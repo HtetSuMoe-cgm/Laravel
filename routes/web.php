@@ -16,11 +16,11 @@ use App\Http\Controllers\Post\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard.home');
-});
+// Route::get('/', function () {
+//     return view('dashboard.home');
+// });
 
-//Route::get('home', [PostController::class, 'Home'])->name('home');
+Route::get('/', [PostController::class, 'Home'])->name('home');
 Route::get('login', [AuthController::class, 'Login'])->name('login');
 Route::get('register', [UserController::class, 'Register'])->name('register');
 
