@@ -18,9 +18,13 @@ class PostController extends Controller
 
     public function Home()
     {
-        //return view('dashboard.home');
         $postList = $this->postService->getPostList();
         return view('dashboard.home', compact('postList'));
+    }
+
+    public function DetailPost()
+    {
+        return view('posts.detailPost');
     }
     /**
      * Display a listing of the resource.

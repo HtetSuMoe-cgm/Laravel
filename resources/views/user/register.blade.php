@@ -1,7 +1,6 @@
 @extends('layout.header')
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-{{-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> --}}
 <div class="wrapper fadeInDown">
     <div id="formContent">
       <!-- Login Form -->
@@ -16,4 +15,5 @@
       </form>
     </div>
   </div>
+  @include('layout.footer')
   @endsection

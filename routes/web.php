@@ -23,4 +23,4 @@ use App\Http\Controllers\Post\PostController;
 Route::get('/', [PostController::class, 'Home'])->name('home');
 Route::get('login', [AuthController::class, 'Login'])->name('login');
 Route::get('register', [UserController::class, 'Register'])->name('register');
-
+Route::get('detailPost', [PostController::class, 'DetailPost'])->name('detailPost');

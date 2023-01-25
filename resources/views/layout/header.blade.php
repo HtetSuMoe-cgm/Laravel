@@ -4,7 +4,7 @@
 <head>
     <title>Custom Auth in Laravel</title>
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap_css/bootstrap.min.css') }}">
 </head>
 
 <body>
@@ -50,6 +50,7 @@
         </div>
     </nav>
     @yield('content')
+    {{-- <script src="{{ asset('js/bootstrap_js/') }}"></script> --}}
 </body>
 
 </html>
