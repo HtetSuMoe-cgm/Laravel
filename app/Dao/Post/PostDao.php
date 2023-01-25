@@ -12,5 +12,9 @@ class PostDao implements PostDaoInterface
         return $postList;
     }
 
-   
+    public function detailPost($post_id){
+        return Post::select('posts.*')
+        ->where('posts.id',$post_id)
+        ->get();
+    }
 }

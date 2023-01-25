@@ -22,9 +22,11 @@ class PostController extends Controller
         return view('dashboard.home', compact('postList'));
     }
 
-    public function DetailPost()
+    public function DetailPost($post_id)
     {
-        return view('posts.detailPost');
+        $postData = $this->postService->detailPost($post_id);
+        return view('posts.detailPost')->with(['postData' => $postData[0]]);
+        //return view('posts.detailPost', compact('detailPost'));
     }
     /**
      * Display a listing of the resource.
