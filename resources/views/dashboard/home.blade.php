@@ -1,4 +1,4 @@
-@extends('layout.common')
+@extends('layout.header')
 @section('content')
     <main class="dashboard">
         <div class="cotainer">
@@ -11,10 +11,14 @@
                         <h5 class="mb-1">{{ $row->title }}</h5>
                         <small>3 days ago</small>
                     </div>
-                    <p class="mb-1">{{ $row->title }}</p>
+                    {{-- <p class="mb-1">{{ $row->description }}</p> --}}
                     <a href="">detail</a>
                 </div>
             </div>
+            {{-- <div class="card m-5">
+                <div class="card-body">{{ $row->title }}</div>
+                <a href="">detail</a>
+            </div> --}}
             @endforeach
         </div>
     </main>
