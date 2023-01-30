@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('post_img');
-            $table->integer('public_flag')->default(1);
+            $table->tinyInteger('public_flag')->default(1);
             $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamp('created_at')->useCurrent();

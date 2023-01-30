@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function Register()
+    public function Welcome()
     {
-        return view('user.register');
+        return view('dashboard.welcome');
     }
 }

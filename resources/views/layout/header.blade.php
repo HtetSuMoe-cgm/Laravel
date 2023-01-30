@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Custom Auth in Laravel</title>
+    <title>Bulletin Board</title>
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap_css/bootstrap.min.css') }}">
 </head>
@@ -22,20 +22,33 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}">Home</a>
                     </li>
+                    @auth
+                    {{auth()->user()->name}}
                     <li class="nav-item">
                         <a class="nav-link" href="#">Posts</a>
                     </li>
+                    @if(Auth::check() && Auth::user()->type === 'admin')
                     <li class="nav-item">
                         <a class="nav-link" href="#">Users</a>
                     </li>
+                    @endif
+                    @endauth
                 </ul>
                 <ul class="navbar-nav ml-auto">
+                    @auth
+                    {{auth()->user()->name}}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}" data-target="#myModal" data-toggle="modal">Login</a>
+                        <a class="nav-link" href="{{ route('logout.perform') }}" data-target="#myModal" data-toggle="modal">Logout</a>
+                    </li>
+                    @endauth
+                    @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login.show') }}" data-target="#myModal" data-toggle="modal">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}" data-target="#myModal" data-toggle="modal">Register</a>
+                        <a class="nav-link" href="{{ route('register.show') }}" data-target="#myModal" data-toggle="modal">Register</a>
                     </li>
+                    @endguest
                 </ul>
             </div>
         </div>
