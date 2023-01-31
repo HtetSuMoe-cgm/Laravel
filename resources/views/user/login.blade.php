@@ -10,7 +10,7 @@
             {{ Form::close() }}
             <!-- Remind Passowrd -->
             <div class="formFooter">
-                <a href="#">Forgot Password?</a>
+                <a href="{{ route('user.forgotPassword.show') }}">Forgot Password?</a>
             </div>
 
         </div>
