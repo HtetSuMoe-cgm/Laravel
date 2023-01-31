@@ -92,7 +92,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Reset password 
+     * Reset password
      */
     public function resetPassword(PasswordResetRequest $request)
     {

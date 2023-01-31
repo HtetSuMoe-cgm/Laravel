@@ -12,7 +12,7 @@
                         <div class="form-group row">
                             {{ Form::label('email', 'E-Mail Address', ['class' => 'col-md-4 col-form-label text-md-right']) }}
                             <div class="col-md-6">
-                                {{ Form::email('email', old('email'), ['class' => 'form-control'.($errors->has('email') ? 'is-invalid' : '')]) }}
+                                {{ Form::email('email', old('email'), ['class' => 'form-control' . ($errors->has('email') ? 'is-invalid' : '')]) }}
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -24,7 +24,7 @@
                         <div class="form-group row">
                             {{ Form::label('password', 'Password', ['class' => 'col-md-4 col-form-label text-md-right']) }}
                             <div class="col-md-6">
-                                {{ Form::password('password', ['class' => 'form-control'.($errors->has('password') ? 'is-invalid' : '')]) }}
+                                {{ Form::password('password', ['class' => 'form-control' . ($errors->has('password') ? 'is-invalid' : '')]) }}
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -36,7 +36,7 @@
                         <div class="form-group row">
                             {{ Form::label('password', 'Confirm Password', ['class' => 'col-md-4 col-form-label text-md-right']) }}
                             <div class="col-md-6">
-                                {{ Form::password('password_confirmation', ['class' => 'form-control'.($errors->has('password') ? 'is-invalid' : '')]) }}
+                                {{ Form::password('password_confirmation', ['class' => 'form-control' . ($errors->has('password') ? 'is-invalid' : '')]) }}
                             </div>
                         </div>
 

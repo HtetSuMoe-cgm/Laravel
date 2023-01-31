@@ -13,12 +13,12 @@
                             </div>
                         @endif
 
-                        {{ Form::open(['method' => 'post','route' => 'user.sendEmail']) }}
+                        {{ Form::open(['method' => 'post', 'route' => 'user.sendEmail']) }}
                         <div class="form-group row">
-                            {{ Form::label('email', 'E-Mail Address',['class' => 'col-md-4 col-form-label text-md-right']) }}
+                            {{ Form::label('email', 'E-Mail Address', ['class' => 'col-md-4 col-form-label text-md-right']) }}
                             <div class="col-md-6">
-                            {{ Form::text('email','', ['class' => 'form-control'.($errors->has('email') ? 'is-invalid' : '')]) }}
-                            @error('email')
+                                {{ Form::text('email', '', ['class' => 'form-control' . ($errors->has('email') ? 'is-invalid' : '')]) }}
+                                @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -27,7 +27,7 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                {{ Form::submit('Send Password Reset Link',['class' => 'btn btn-primary']) }}
+                                {{ Form::submit('Send Password Reset Link', ['class' => 'btn btn-primary']) }}
                             </div>
                         </div>
                         {{ Form::close() }}

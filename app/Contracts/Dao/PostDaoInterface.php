@@ -2,8 +2,6 @@
 
 namespace App\Contracts\Dao;
 
-use Illuminate\Http\Request;
-
 interface PostDaoInterface{
     public function getPostList();
 
