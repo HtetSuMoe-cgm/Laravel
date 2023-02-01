@@ -24,7 +24,8 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/login', [AuthController::class, 'viewLogin'])->name('login.show');
     Route::post('/login', [AuthController::class, 'userLogin'])->name('login.perform');
     Route::get('/register', [AuthController::class, 'viewRegister'])->name('register.show');
-    Route::get('/forget-password', [AuthController::class, 'forgotPassword'])->name('user.forgotPassword.show');
+    Route::post('/register', [AuthController::class, 'register'])->name('register.perform');
+    Route::get('/forget-password', [AuthController::class, 'showPasswordResetMailForm'])->name('user.forgotPassword.show');
     Route::post('/forget-password', [AuthController::class, 'sendEmail'])->name('user.sendEmail');
     Route::get('resetPassword/{token}', [AuthController::class, 'resetPasswordForm'])->name('user.resetPasswordForm.show');
     Route::post('resetPassword', [AuthController::class, 'resetPassword'])->name('user.resetPassword');

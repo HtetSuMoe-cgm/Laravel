@@ -17,6 +17,13 @@ class UserService implements UserServiceInterface
     }
 
     /**
+     * User Register
+     */
+    public function register($request){
+        $this->userDao->register($request);
+    }
+
+    /**
      * Forgot password
      */
     public function forgotPassword($request)

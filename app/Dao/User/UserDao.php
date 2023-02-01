@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Hash;
 class UserDao implements UserDaoInterface
 {
     /**
+     * User Register
+     */
+    public function register($request){
+        $data = $request->all();
+        $check = $this->createUsesr($data);
+    }
+
+    /**
      * Forgot password
      */
     public function forgotPassword($request, $token)
@@ -37,5 +45,19 @@ class UserDao implements UserDaoInterface
             ->update(['password' => Hash::make($request->password)]);
 
         DB::table('password_resets')->where(['email' => $request->email])->delete();
+    }
+
+    /**
+     * Create User
+     */
+    public function createUsesr(array $data)
+    {
+      return User::create([
+        'username' => $data['username'],
+        'email' => $data['email'],
+        'password' => Hash::make($data['password']),
+        'gender' => $data['gender'],
+        'type' => $data['type']
+      ]);
     }
 }

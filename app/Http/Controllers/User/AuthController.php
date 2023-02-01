@@ -4,7 +4,9 @@ namespace App\Http\Controllers\User;
 
 use App\Contracts\Services\UserServiceInterface;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\PasswordResetRequest;
+use App\Http\Requests\User\RegisterRequest;
 use App\Http\Requests\User\SendPasswordResetMailRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +32,7 @@ class AuthController extends Controller
     /**
      * User Login function
      */
-    public function userLogin(Request $request)
+    public function userLogin(LoginRequest $request)
     {
         $input = $request->all();
 
@@ -55,6 +57,15 @@ class AuthController extends Controller
     }
 
     /**
+     * User Register
+     */
+    public function register(RegisterRequest $request){
+        $request->validated();
+        $this->userService->register($request);
+        return view('user.login');
+    }
+
+    /**
      * Logout
      */
     public function logout()
@@ -68,7 +79,7 @@ class AuthController extends Controller
     /**
      * Show Forgot Password Form
      */
-    public function forgotPassword()
+    public function showPasswordResetMailForm()
     {
         return view('user.forgotPassword');
     }
