@@ -21,9 +21,9 @@ Route::get('/', [PostController::class, 'Home'])->name('home');
 
 Route::group(['prefix' => 'user'], function () {
     //Route::get('/', [PostController::class, 'Home'])->name('home');
-    Route::get('/login', [AuthController::class, 'ViewLogin'])->name('login.show');
-    Route::post('/login', [AuthController::class, 'UserLogin'])->name('login.perform');
-    Route::get('/register', [AuthController::class, 'ViewRegister'])->name('register.show');
+    Route::get('/login', [AuthController::class, 'viewLogin'])->name('login.show');
+    Route::post('/login', [AuthController::class, 'userLogin'])->name('login.perform');
+    Route::get('/register', [AuthController::class, 'viewRegister'])->name('register.show');
     Route::get('/forget-password', [AuthController::class, 'forgotPassword'])->name('user.forgotPassword.show');
     Route::post('/forget-password', [AuthController::class, 'sendEmail'])->name('user.sendEmail');
     Route::get('resetPassword/{token}', [AuthController::class, 'resetPasswordForm'])->name('user.resetPasswordForm.show');
@@ -54,7 +54,7 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
 
 Route::middleware(['isAuth'])->group(function () {
     Route::group(['prefix' => 'user'], function () {
-        Route::get('/', [AuthController::class, 'Logout'])->name('logout.perform');
+        Route::get('/', [AuthController::class, 'logout'])->name('logout.perform');
     });
 });
 

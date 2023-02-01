@@ -57,7 +57,7 @@ class AuthController extends Controller
     /**
      * Logout
      */
-    public function Logout()
+    public function logout()
     {
         Session::flush();
         Auth::logout();
