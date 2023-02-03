@@ -18,6 +18,13 @@ class UserDao implements UserDaoInterface
     }
 
     /**
+     * Get User List
+     */
+    public function getUserList(){
+        $userList = DB::table('users')->get();
+        return $userList;
+    }
+    /**
      * Forgot password
      */
     public function forgotPassword($request, $token)

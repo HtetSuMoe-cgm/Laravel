@@ -24,6 +24,13 @@ class UserService implements UserServiceInterface
     }
 
     /**
+     * Get User List
+     */
+    public function getUserList(){
+        return $this->userDao->getUserList();
+    }
+
+    /**
      * Forgot password
      */
     public function forgotPassword($request)
