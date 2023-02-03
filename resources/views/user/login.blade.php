@@ -1,6 +1,5 @@
-@extends('layout.header')
-@section('content')
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+@extends('layout.app')
+@section('main-content')
     <div class="wrapper fadeInDown">
         <div class="formContent">
             {{ Form::open(['method' => 'post', 'route' => 'login.perform']) }}
@@ -28,5 +27,4 @@
 
         </div>
     </div>
-    @include('layout.footer')
 @endsection

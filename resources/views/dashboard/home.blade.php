@@ -1,5 +1,5 @@
-@extends('layout.header')
-@section('content')
+@extends('layout.app')
+@section('main-content')
     <main class="dashboard">
         <div class="cotainer">
             <h3 class="m-3">Bulletin Board</h3>
@@ -15,5 +15,4 @@
             @endforeach
         </div>
     </main>
-    @include('layout.footer')
 @endsection

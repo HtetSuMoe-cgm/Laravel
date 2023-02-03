@@ -1,5 +1,5 @@
-@extends('layout.header')
-@section('content')
+@extends('layout.app')
+@section('main-content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -51,5 +51,4 @@
             </div>
         </div>
     </div>
-    @include('layout.footer')
 @endsection

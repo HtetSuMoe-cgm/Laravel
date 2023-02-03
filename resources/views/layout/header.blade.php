@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Bulletin Board</title>
-    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap_css/bootstrap.min.css') }}">
-</head>
-
-<body>
+<header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('home') }}">
@@ -29,7 +20,7 @@
                         </li>
                         @if (Auth::check() && Auth::user()->type === 'admin')
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Users</a>
+                                <a class="nav-link" href="{{ route('userList.show') }}">Users</a>
                             </li>
                         @endif
                     @endauth
@@ -38,26 +29,19 @@
                     @auth
                         {{ auth()->user()->name }}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logout.perform') }}" data-target="#myModal"
-                                data-toggle="modal">Logout</a>
+                            <a class="nav-link" href="{{ route('logout.perform') }}">Logout</a>
                         </li>
                     @endauth
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login.show') }}" data-target="#myModal"
-                                data-toggle="modal">Login</a>
+                            <a class="nav-link" href="{{ route('login.show') }}">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register.show') }}" data-target="#myModal"
-                                data-toggle="modal">Register</a>
+                            <a class="nav-link" href="{{ route('register.show') }}">Register</a>
                         </li>
                     @endguest
                 </ul>
             </div>
         </div>
     </nav>
-    @yield('content')
-    {{-- <script src="{{ asset('js/bootstrap_js/') }}"></script> --}}
-</body>
-
-</html>
+</header>
