@@ -31,6 +31,13 @@ class UserService implements UserServiceInterface
     }
 
     /**
+     * Create User by Admin
+     */
+    public function doAddUser($request){
+        $this->userDao->dbAddUser($request);
+    }
+
+    /**
      * Forgot password
      */
     public function forgotPassword($request)

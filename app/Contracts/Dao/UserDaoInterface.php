@@ -6,6 +6,8 @@ interface UserDaoInterface{
     public function register($request);
     
     public function getUserList();
+
+    public function dbAddUser($request);
     
     public function forgotPassword($request,$token);
 

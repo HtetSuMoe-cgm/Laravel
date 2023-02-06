@@ -41,6 +41,7 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     Route::get('welcome', [UserController::class, 'Welcome'])->name('welcome');
     Route::get('/admin/user/list', [UserController::class, 'userList'])->name('userList.show');
     Route::get('/admin/user/create', [UserController::class, 'createUserForm'])->name('createUser.show');
+    Route::post('/admin/user/add', [UserController::class, 'createUser'])->name('createUser.perform');
 });
 
 Route::middleware(['isAuth'])->group(function () {

@@ -7,6 +7,8 @@ interface UserServiceInterface
 
     public function getUserList();
 
+    public function doAddUser($request);
+
     public function forgotPassword($request);
 
     public function getResetData($request);

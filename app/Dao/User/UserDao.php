@@ -14,7 +14,7 @@ class UserDao implements UserDaoInterface
      */
     public function register($request){
         $data = $request->all();
-        $check = $this->createUsesr($data);
+        $check = $this->create($data);
     }
 
     /**
@@ -24,6 +24,15 @@ class UserDao implements UserDaoInterface
         $userList = DB::table('users')->get();
         return $userList;
     }
+
+    /**
+     * Create User By Admin
+     */
+    public function dbAddUser($request){
+        $data = $request->all();
+        $check = $this->create($data);
+    }
+
     /**
      * Forgot password
      */
@@ -57,7 +66,7 @@ class UserDao implements UserDaoInterface
     /**
      * Create User
      */
-    public function createUsesr(array $data)
+    public function create(array $data)
     {
       return User::create([
         'username' => $data['username'],

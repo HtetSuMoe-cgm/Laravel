@@ -3,7 +3,7 @@
     <div class="wrapper fadeInDown">
         <div class="formContent">
             {{ Form::open(['method' => 'post', 'route' => 'register.perform']) }}
-            {{ Form::text('username', '', ['class' => 'login fadeIn required' . ($errors->has('username') ? ' is-invalid' : ''), 'placeholder' => 'username']) }}
+            {{ Form::text('username', '', ['class' => 'login fadeIn' . ($errors->has('username') ? ' is-invalid' : ''), 'placeholder' => 'username']) }}
             @if ($errors->has('username'))
                 @error('username')
                     <span class="error invalid-feedback" role="alert">
