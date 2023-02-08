@@ -29,6 +29,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('resetPassword/{token}', [AuthController::class, 'resetPasswordForm'])->name('user.resetPasswordForm.show');
     Route::post('resetPassword', [AuthController::class, 'resetPassword'])->name('user.resetPassword');
     Route::get('/detailPost/{post_id}', [PostController::class, 'DetailPost'])->name('detailPost');
+    Route::get('/postList', [PostController::class, 'postList'])->name('postList.show');
 });
 
 //Route User
@@ -42,6 +43,10 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     Route::get('/admin/user/list', [UserController::class, 'userList'])->name('userList.show');
     Route::get('/admin/user/create', [UserController::class, 'createUserForm'])->name('createUser.show');
     Route::post('/admin/user/add', [UserController::class, 'createUser'])->name('createUser.perform');
+    Route::get('/admin/user/edit/{id}', [UserController::class, 'editUserForm'])->name('editUser.show');
+    Route::post('/admin/user/edit/{id}', [UserController::class, 'editUser'])->name('editUser.perform');
+    Route::get('/admin/user/delete/{id}', [UserController::class, 'deleteUserModel'])->name('deleteUser.show');
+    Route::post('/admin/user/delete/{id}', [UserController::class, 'deleteUser'])->name('deleteUser.perform');
 });
 
 Route::middleware(['isAuth'])->group(function () {

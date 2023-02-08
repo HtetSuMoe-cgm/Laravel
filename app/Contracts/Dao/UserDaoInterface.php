@@ -9,6 +9,12 @@ interface UserDaoInterface{
 
     public function dbAddUser($request);
     
+    public function editUserForm($id);
+
+    public function editUser($request,$id);
+
+    public function deleteUser($id);
+    
     public function forgotPassword($request,$token);
 
     public function getResetData($request);

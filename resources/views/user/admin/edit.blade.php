@@ -4,13 +4,13 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card mt-5">
-                    <div class="card-header">Create User</div>
+                    <div class="card-header">Update User</div>
                     <div class="card-body">
-                        {{ Form::open(['method' => 'post', 'route' => 'createUser.perform']) }}
+                        {{ Form::model($user,['method' => 'post','route' =>['editUser.perform',$user->id]]) }}
                         <div class="form-group row">
                             {{ Form::label('username', 'User Name', ['class' => 'col-md-4 col-form-label text-md-right']) }}
                             <div class="col-md-6">
-                                {{ Form::text('username', '', ['class' => 'form-control' . ($errors->has('username') ? 'is-invalid' : '')]) }}
+                                {{ Form::text('username', $user->username, ['class' => 'form-control' . ($errors->has('username') ? 'is-invalid' : '')]) }}
                                 @if ($errors->has('username'))
                                     @error('username')
                                         <span class="error invalid-feedback" role="alert">
@@ -24,7 +24,7 @@
                         <div class="form-group row">
                             {{ Form::label('email', 'E-Mail Address', ['class' => 'col-md-4 col-form-label text-md-right']) }}
                             <div class="col-md-6">
-                                {{ Form::email('email', old('email'), ['class' => 'form-control' . ($errors->has('email') ? 'is-invalid' : '')]) }}
+                                {{ Form::email('email', $user->email, ['class' => 'form-control' . ($errors->has('email') ? 'is-invalid' : '')]) }}
                                 @if ($errors->has('email'))
                                     @error('email')
                                         <span class="error invalid-feedback" role="alert">
@@ -59,7 +59,7 @@
                         <div class="form-group row">
                             {{ Form::label('type', 'User Type', ['class' => 'col-md-4 col-form-label text-md-right']) }}
                             <div class="col-md-6">
-                                {{ Form::select('type', [1 => 'Admin', 0 => 'User'],'',['class' => 'form-control']) }}
+                                {{ Form::select('type', ['1' => 'Admin', '0' => 'User'], $user->type,['id' => 'type']) }}   
                             </div>
                         </div>
 
@@ -73,7 +73,8 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                {{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
+                                {{ Form::hidden('hidden_id',$user->id) }}
+                                {{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
                             </div>
                         </div>
                         {{ Form::close() }}

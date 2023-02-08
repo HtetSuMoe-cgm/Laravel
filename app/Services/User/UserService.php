@@ -38,6 +38,24 @@ class UserService implements UserServiceInterface
     }
 
     /**
+     * Show Edit User Form
+     */
+    public function editUserForm($id){
+        return $this->userDao->editUserForm($id);
+    }
+
+    /**
+     * Edit User
+     */
+    public function editUser($request,$id){
+        $this->userDao->editUser($request,$id);
+    }
+
+    public function deleteUser($id){
+        $this->userDao->deleteUser($id);
+    }
+
+    /**
      * Forgot password
      */
     public function forgotPassword($request)

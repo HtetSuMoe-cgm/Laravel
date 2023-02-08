@@ -46,8 +46,39 @@ class UserController extends Controller
     public function createUser(CreateUserRequest $request){
         $request->validated();
         $this->userService->doAddUser($request);
-        return view('user.admin.userList');
-        //return redirect()->route('userList.show');
+        //return view('user.admin.userList');
+        return redirect()->route('userList.show');
     }
 
+    /**
+     * Show Edit User Form
+     */
+    public function editUserForm($id){
+        $user = $this->userService->editUserForm($id);
+        //dd($user);
+        return view('user.admin.edit', compact('user'));
+    }
+
+    /**
+     * Edit User
+     */
+    public function editUser(Request $request,$id){
+        $this->userService->editUser($request, $id);
+        return redirect()->route('userList.show');
+    }
+
+    /**
+     * 
+     */
+    public function deleteUserModel($id){
+        return view('layout.modal');
+    }
+
+    /**
+     * 
+     */
+    public function deleteUser($id){
+        $this->userService->deleteUser($id);
+        return redirect()->route('userList.show');
+    }
 }
