@@ -26,6 +26,9 @@ class User extends Authenticatable
         'password',
         'gender',
         'type',
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     protected function type(): Attribute

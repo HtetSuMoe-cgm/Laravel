@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('gender');
             $table->tinyInteger('type')->default(0);//type - 0 (user) - 1 (admin)
+            //$table->enum('type', [0, 1])->default(0);//type - 0 (user) - 1 (admin)
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
             $table->timestamp('deleted_at')->useCurrent();
