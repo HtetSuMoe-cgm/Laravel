@@ -51,6 +51,9 @@ class UserService implements UserServiceInterface
         $this->userDao->editUser($request,$id);
     }
 
+    /**
+     * Delete User
+     */
     public function deleteUser($id){
         $this->userDao->deleteUser($id);
     }

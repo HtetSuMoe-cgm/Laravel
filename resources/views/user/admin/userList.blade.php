@@ -30,35 +30,54 @@
                                 <td>{{ $data->type }}</td>
                                 <td>
                                     <ul class="list-inline m-0">
+                                        <li class="list-inline-item">
+                                            <a href="{{ route('editUser.show', $data->id) }}" class="btn btn-sm rounded-0"
+                                                type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i
+                                                    class="fa-solid fa-pen-to-square"></i></a>
+                                        </li>
                                         {{-- <li class="list-inline-item">
-                                            <a href="{{ route('editUser.show', $data->id) }}" class="btn btn-sm rounded-0"
-                                                type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i
-                                                    class="fa-solid fa-pen-to-square"></i></a>
+                                            <a type="button" class="btn btn-sm rounded-0" data-toggle="modal"
+                                                data-target="#deleteModal" data-item="{{ $data->id }}">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
                                         </li>
-                                        <li class="list-inline-item">
-                                            <a class="btn btn-sm rounded-0" type="button" data-toggle="modal"
-                                                data-target="#my-modal" data-placement="top" title="Delete"><i
-                                                    class="fa fa-trash"></i></a>
-                                        </li> --}}
+                                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete this "{{ $data->username }} " ?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Cancel</button>
+                                                        <form  method="post" action="{{ route('deleteUser.perform', $data->id) }}">
+                                                            @csrf
+                                                            @method('post')
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> --}}
 
-                                        {!! Form::model($data, ['method' => 'delete', 'route' => ['deleteUser.show', $data->id], 'class' =>'form-inline form-delete']) !!}
-                                        {!! Form::hidden('id', $data->id) !!}
                                         <li class="list-inline-item">
-                                            <a href="{{ route('editUser.show', $data->id) }}" class="btn btn-sm rounded-0"
-                                                type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i
-                                                    class="fa-solid fa-pen-to-square"></i></a>
+                                            <form method="POST" action="{{ route('deleteUser.perform', $data->id) }}">
+                                                @csrf
+                                                <input name="_method" type="hidden" value="DELETE">
+                                                <button type="submit"
+                                                    class="btn btn-sm rounded-0 show-alert-delete-box btn-sm"
+                                                    data-toggle="tooltip" title='Delete'><i
+                                                        class="fa fa-trash"></i></button>
+                                            </form>
                                         </li>
-                                        <li class="list-inline-item">
-                                        {!! Form::submit(trans('delete'), ['class' => 'btn btn-xs btn-danger delete', 'name' => 'delete_modal']) !!}
-                                        </li>
-                                        {!! Form::close() !!}
-
-                                        {{-- <form method="post" action="{{ route('deleteUser.perform', $data->id) }}">
-                                            @csrf
-                                            @method('POST')
-                                            <a href="{{ route('editUser.show', $data->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                            <input type="submit" class="btn btn-danger btn-sm" value="Delete" />
-                                        </form> --}}
                                     </ul>
                                 </td>
                             </tr>
@@ -69,6 +88,32 @@
                         </tr>
                     @endif
             </table>
-        </div>
-    </div>
+        </div>  
+    @endsection
+</div>
+
+@section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script type="text/javascript">
+    $('.show-alert-delete-box').click(function(event) {
+        var form = $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        swal({
+            title: "Are you sure you want to delete this record?",
+            text: "If you delete this, it will be gone forever.",
+            // icon: "warning",
+            type: "warning",
+            buttons: ["Cancel", "Yes!"],
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((willDelete) => {
+            if (willDelete) {
+                form.submit();
+            }
+        });
+    });
+</script>
 @endsection

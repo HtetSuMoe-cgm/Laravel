@@ -17,13 +17,13 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('posts')->insert([
-            'title' => 'test title',
-            'description' => 'description in test post ........',
-            'post_img' => 'test.png',
-            'created_by' => 1,
-            'updated_by' => 1,
-        ]);
+        // DB::table('posts')->insert([
+        //     'title' => 'test title',
+        //     'description' => 'description in test post ........',
+        //     'post_img' => 'test.png',
+        //     'created_by' => 1,
+        //     'updated_by' => 1,
+        // ]);
 
         Post::factory()->count(10)->create();
     }

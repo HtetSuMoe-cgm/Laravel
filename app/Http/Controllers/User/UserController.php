@@ -55,7 +55,6 @@ class UserController extends Controller
      */
     public function editUserForm($id){
         $user = $this->userService->editUserForm($id);
-        //dd($user);
         return view('user.admin.edit', compact('user'));
     }
 
@@ -68,14 +67,7 @@ class UserController extends Controller
     }
 
     /**
-     * 
-     */
-    public function deleteUserModel($id){
-        return view('layout.modal');
-    }
-
-    /**
-     * 
+     * Delete User
      */
     public function deleteUser($id){
         $this->userService->deleteUser($id);

@@ -45,8 +45,7 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     Route::post('/admin/user/add', [UserController::class, 'createUser'])->name('createUser.perform');
     Route::get('/admin/user/edit/{id}', [UserController::class, 'editUserForm'])->name('editUser.show');
     Route::post('/admin/user/edit/{id}', [UserController::class, 'editUser'])->name('editUser.perform');
-    Route::get('/admin/user/delete/{id}', [UserController::class, 'deleteUserModel'])->name('deleteUser.show');
-    Route::post('/admin/user/delete/{id}', [UserController::class, 'deleteUser'])->name('deleteUser.perform');
+    Route::delete('/admin/user/delete/{id}', [UserController::class, 'deleteUser'])->name('deleteUser.perform');
 });
 
 Route::middleware(['isAuth'])->group(function () {
