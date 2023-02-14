@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\User;
 
 use App\Contracts\Services\UserServiceInterface;
+use App\Exports\ExportUser;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CreateUserRequest;
+use App\Http\Requests\User\ImportUserRequest;
+use App\Imports\ImportUser;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -46,7 +50,6 @@ class UserController extends Controller
     public function createUser(CreateUserRequest $request){
         $request->validated();
         $this->userService->doAddUser($request);
-        //return view('user.admin.userList');
         return redirect()->route('userList.show');
     }
 
@@ -72,5 +75,27 @@ class UserController extends Controller
     public function deleteUser($id){
         $this->userService->deleteUser($id);
         return redirect()->route('userList.show');
+    }
+
+    /**
+     * Import Exel View
+     */
+    public function importView(Request $request){
+        return view('importFile');
+    }
+
+    /**
+     * Import User
+     */
+    public function importUsers(ImportUserRequest $request){
+        Excel::import(new ImportUser, $request->file('file')->store('files'));
+        return redirect()->back();
+    }
+
+    /**
+     * Export User
+     */
+    public function exportUsers(Request $request){
+        return Excel::download(new ExportUser, 'users.xlsx');
     }
 }

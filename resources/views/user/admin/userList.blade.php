@@ -3,9 +3,47 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-                <div class="col col-md-6"><b>User List</b></div>
+                <h3 class="ml-3"><b>User Lists</b></h3>
+            </div>
+            <div class="row">
                 <div class="col col-md-6">
-                    <a href="{{ route('createUser.show') }}" class="btn btn-success btn-sm float-right">Add</a>
+                    <div class="row">
+                        <div class="col col-md-6">
+                            {{ Form::open(['method' => 'post', 'route' => 'import-users', 'files' => true]) }}
+                            @if (count($errors) > 0)
+                                <div class="col-md-12">
+                                  <div class="alert alert-danger mt-5">
+                                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                                      @foreach($errors->all() as $error)
+                                      {{ $error }} <br>
+                                      @endforeach      
+                                  </div>
+                                </div>
+                            @endif
+                            {{ Form::label('file', 'Choose file', ['class' => 'custom-file-label', 'id' => 'customFile']) }}
+                            <div class="custom-file text-left">
+                                {{ Form::file('file', ['class' => 'custom-file-input', 'for' => 'customFile']) }}
+                            </div>
+                            {{-- <div class="custom-file text-left">
+                                {{ Form::file('file', ['class' => 'custom-file-input' . ($errors->has('file') ? ' is-invalid' : ''), 'for' => 'customFile']) }}
+                                @if ($errors->has('file'))
+                                    @error('file')
+                                        <span class="error invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+                                @endif
+                            </div> --}} 
+                        </div>
+                        <div class="col col-md-6">
+                            {{ Form::submit('Import Users', ['class' => 'btn btn-primary']) }}
+                        </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+                <div class="col col-md-6">
+                    <a href="{{ route('createUser.show') }}" class="btn btn-success btn-sm float-right">Add User</a>
                 </div>
             </div>
         </div>
@@ -27,7 +65,7 @@
                                 <td>{{ $data->username }}</td>
                                 <td>{{ $data->email }}</td>
                                 <td>{{ $data->gender }}</td>
-                                <td>{{ $data->type }}</td>
+                                <td>{{ $data->type == 1 ? 'Admin' : 'User'}}</td>
                                 <td>
                                     <ul class="list-inline m-0">
                                         <li class="list-inline-item">
@@ -88,32 +126,33 @@
                         </tr>
                     @endif
             </table>
-        </div>  
+            <a class="btn btn-success mt-3" href="{{ route('export-users') }}">Export Users</a>
+        </div>
     @endsection
 </div>
 
 @section('script')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-<script type="text/javascript">
-    $('.show-alert-delete-box').click(function(event) {
-        var form = $(this).closest("form");
-        var name = $(this).data("name");
-        event.preventDefault();
-        swal({
-            title: "Are you sure you want to delete this record?",
-            text: "If you delete this, it will be gone forever.",
-            // icon: "warning",
-            type: "warning",
-            buttons: ["Cancel", "Yes!"],
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((willDelete) => {
-            if (willDelete) {
-                form.submit();
-            }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        $('.show-alert-delete-box').click(function(event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                title: "Are you sure you want to delete this record?",
+                text: "If you delete this, it will be gone forever.",
+                // icon: "warning",
+                type: "warning",
+                buttons: ["Cancel", "Yes!"],
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((willDelete) => {
+                if (willDelete) {
+                    form.submit();
+                }
+            });
         });
-    });
-</script>
+    </script>
 @endsection
