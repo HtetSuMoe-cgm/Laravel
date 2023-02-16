@@ -6,37 +6,34 @@
                 <div class="card mt-5">
                     <div class="card-header">Create Post</div>
                     <div class="card-body">
-                        {{ Form::open(['method' => 'post', 'route' => 'createPost.perform','files' => true]) }}
+                        {{ Form::open(['method' => 'post', 'route' => 'createPost.perform', 'files' => true]) }}
 
                         <div class="form-group row">
-                            {!! Form::label('post_img', 'Image') !!}
-                            {!! Form::file('post_img', ['class' => 'form-control']) !!}
+                            {!! Form::label('post_img', 'Image', ['class' => 'col-md-4 col-form-label text-md-right']) !!}
+                            <div class="col-md-6">
+                                {!! Form::file('post_img', ['class' => 'form-control']) !!}
+                                @error('post_img')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
                         <div class="form-group row">
                             {{ Form::label('title', 'Title', ['class' => 'col-md-4 col-form-label text-md-right']) }}
                             <div class="col-md-6">
-                                {{ Form::text('title', '', ['class' => 'form-control' . ($errors->has('title') ? 'is-invalid' : '')]) }}
-                                @if ($errors->has('title'))
-                                    @error('title')
-                                        <span class="error invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                @endif
+                                {{ Form::text('title', '', ['class' => 'form-control']) }}
+                                @error('title')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
                             {{ Form::label('description', 'Description', ['class' => 'col-md-4 col-form-label text-md-right']) }}
                             <div class="col-md-6">
-                                {{ Form::textarea('description', '', ['class' => 'form-control', 'rows' => 3 . ($errors->has('description') ? 'is-invalid' : '')]) }}
-                                @if ($errors->has('description'))
-                                    @error('description')
-                                        <span class="error invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                @endif
+                                {{ Form::textarea('description', '', ['class' => 'form-control', 'rows' => 3]) }}
+                                @error('description')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
@@ -47,6 +44,9 @@
                                 {{ Form::radio('public_flag', 1, '', ['class' => 'form-check-input', 'id' => 'inlineRadio2']) }}
                                 {{ Form::label('inlineRadio2', 'Private', ['class' => 'form-check-label']) }}
                             </div>
+                            @error('public_flag')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

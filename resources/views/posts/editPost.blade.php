@@ -6,39 +6,43 @@
                 <div class="card mt-5">
                     <div class="card-header">Edit Post</div>
                     <div class="card-body">
-                        {{ Form::model($post,['method' => 'post', 'route' => ['editPost.perform',$post->id],'files' => true]) }}
+                        {{ Form::model($post, ['method' => 'post', 'route' => ['editPost.perform', $post->id], 'files' => true]) }}
                         <div class="form-group row">
-                            {{ Form::label('post_img', 'Image') }}
-                            {{ Form::file('post_img', ['class' => 'form-control']) }}
-                            <img src="/images/{{ $post->post_img }}" width="100px">
+                            <div class="col-md-4 mx-auto">
+                            <img src="{{ asset('images/' . $post->post_img) }}" width="100" class="img-thumbnail" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            {{ Form::label('post_img', 'Image', ['class' => 'col-md-4 col-form-label text-md-right']) }}
+                            <div class="col-md-6">
+                                {{ Form::file('post_img', ['class' => 'form-control']) }}
+                                @error('post_img')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            {{-- <img src="/images/{{ $post->post_img }}" width="100px"> --}}
                             {{-- {{Form::image('image', asset('images/' . $post->post_img), ['width' => '100px']) }} --}}
-                            {{Form::hidden('hidden_post_img', $post->post_img) }}
+                            {{ Form::hidden('hidden_post_img', $post->post_img) }}
+
                         </div>
                         <div class="form-group row">
                             {{ Form::label('title', 'Title', ['class' => 'col-md-4 col-form-label text-md-right']) }}
                             <div class="col-md-6">
-                                {{ Form::text('title', $post->title, ['class' => 'form-control' . ($errors->has('title') ? 'is-invalid' : '')]) }}
-                                @if ($errors->has('title'))
-                                    @error('title')
-                                        <span class="error invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                @endif
+                                {{ Form::text('title', $post->title, ['class' => 'form-control']) }}
+                                @error('title')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
                             {{ Form::label('description', 'Description', ['class' => 'col-md-4 col-form-label text-md-right']) }}
                             <div class="col-md-6">
-                                {{ Form::textarea('description', $post->description, ['class' => 'form-control', 'rows' => 3 . ($errors->has('description') ? 'is-invalid' : '')]) }}
-                                @if ($errors->has('description'))
-                                    @error('description')
-                                        <span class="error invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                @endif
+                                {{ Form::textarea('description', $post->description, ['class' => 'form-control', 'rows' => 3]) }}
+                                @error('description')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
@@ -52,7 +56,7 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                {{ Form::hidden('hidden_id',$post->id) }}
+                                {{ Form::hidden('hidden_id', $post->id) }}
                                 {{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
                             </div>
                         </div>
