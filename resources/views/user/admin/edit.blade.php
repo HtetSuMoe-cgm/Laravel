@@ -59,7 +59,8 @@
                         <div class="form-group row">
                             {{ Form::label('type', 'User Type', ['class' => 'col-md-4 col-form-label text-md-right']) }}
                             <div class="col-md-6">
-                                {{ Form::select('type', ['1' => 'Admin', '0' => 'User'], $user->type,['id' => 'type']) }}   
+                                {{-- {{ Form::select('type', ['1' => 'Admin', '0' => 'User'], old('type', $user->type),['class' => 'form-control','type' => 'name','placeholder' => 'name',]) }}    --}}
+                                {{ Form::select('type',['1' => 'Admin', '0' => 'User'], $user->type,['class' => 'form-control']) }}
                             </div>
                         </div>
 

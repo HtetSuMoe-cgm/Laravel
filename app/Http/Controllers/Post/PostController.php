@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Post;
 
 use App\Contracts\Services\PostServiceInterface;
 use App\Http\Controllers\Controller;
-use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -21,8 +20,8 @@ class PostController extends Controller
      */
     public function Home()
     {
-        $postList = $this->postService->getPostList();
-        return view('dashboard.home', compact('postList'));
+        $allPost = $this->postService->getPostList();
+        return view('dashboard.home', compact('allPost'));
     }
 
     /**
@@ -33,5 +32,58 @@ class PostController extends Controller
         $postData = $this->postService->detailPost($post_id);
         return view('posts.detailPost')->with(['postData' => $postData[0]]);
         //return view('posts.detailPost', compact('postData'));
+    }
+
+    /**
+     * Post List
+     */
+    public function postList()
+    {
+        $postList = $this->postService->getPostList();
+        return view('posts.postList', compact('postList'));
+    }
+
+    /**
+     * Create Post Form
+     */
+    public function createPostForm()
+    {
+        return view('posts.createPost');
+    }
+
+    /**
+     * Create Post by User
+     */
+    public function createPost(Request $request)
+    {
+        $this->postService->doAddPost($request);
+        return redirect()->route('postList.show');
+    }
+
+    /**
+     * Edit Post Form
+     */
+    public function editPostForm($id)
+    {
+        $post = $this->postService->editPostForm($id);
+        return view('posts.editPost', compact('post'));
+    }
+
+    /**
+     * Edit Post
+     */
+    public function editPost(Request $request, $id)
+    {
+        $this->postService->editPost($request, $id);
+        return redirect()->route('postList.show');
+    }
+
+    /**
+     * Delete Post
+     */
+    public function deletePost($id)
+    {
+        $this->postService->deletePost($id);
+        return redirect()->route('postList.show');
     }
 }

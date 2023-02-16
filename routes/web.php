@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\UserController;
-use App\Http\Controllers\Post\PostController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +14,7 @@ use App\Http\Controllers\Post\PostController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', [PostController::class, 'Home'])->name('home');
 
@@ -30,6 +30,11 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('resetPassword', [AuthController::class, 'resetPassword'])->name('user.resetPassword');
     Route::get('/detailPost/{post_id}', [PostController::class, 'DetailPost'])->name('detailPost');
     Route::get('/postList', [PostController::class, 'postList'])->name('postList.show');
+    Route::get('/post/create', [PostController::class, 'createPostForm'])->name('createPost.show');
+    Route::post('/post/create', [PostController::class, 'createPost'])->name('createPost.perform');
+    Route::get('/post/edit/{post}', [PostController::class, 'editPostForm'])->name('editPost.show');
+    Route::post('/post/edit/{post}', [PostController::class, 'editPost'])->name('editPost.perform');
+    Route::delete('/post/delete/{id}', [PostController::class, 'deletePost'])->name('deletePost.perform');
 });
 
 //Route User
@@ -46,6 +51,9 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     Route::get('/admin/user/edit/{id}', [UserController::class, 'editUserForm'])->name('editUser.show');
     Route::post('/admin/user/edit/{id}', [UserController::class, 'editUser'])->name('editUser.perform');
     Route::delete('/admin/user/delete/{id}', [UserController::class, 'deleteUser'])->name('deleteUser.perform');
+    Route::get('/admin/user/file-import', [UserController::class, 'importView'])->name('import-view');
+    Route::post('/admin/user/import-users', [UserController::class, 'importUsers'])->name('import-users');
+    Route::get('/admin/user/export-users', [UserController::class, 'exportUsers'])->name('export-users');
 });
 
 Route::middleware(['isAuth'])->group(function () {

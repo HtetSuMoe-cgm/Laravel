@@ -16,7 +16,7 @@
                     @auth
                         {{ auth()->user()->name }}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Posts</a>
+                            <a class="nav-link" href="{{ route('postList.show') }}">Posts</a>
                         </li>
                         @if (Auth::check() && Auth::user()->type === 'admin')
                             <li class="nav-item">
