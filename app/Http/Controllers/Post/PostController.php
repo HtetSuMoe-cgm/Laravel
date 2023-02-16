@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Post;
 
 use App\Contracts\Services\PostServiceInterface;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\CreatePostRequest;
+use App\Http\Requests\Post\UpdatePostRequest;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -54,8 +56,9 @@ class PostController extends Controller
     /**
      * Create Post by User
      */
-    public function createPost(Request $request)
+    public function createPost(CreatePostRequest $request)
     {
+        $request->validated();
         $this->postService->doAddPost($request);
         return redirect()->route('postList.show');
     }
@@ -72,8 +75,9 @@ class PostController extends Controller
     /**
      * Edit Post
      */
-    public function editPost(Request $request, $id)
+    public function editPost(UpdatePostRequest $request, $id)
     {
+        $request->validated();
         $this->postService->editPost($request, $id);
         return redirect()->route('postList.show');
     }
