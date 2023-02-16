@@ -48,13 +48,9 @@ class UserDao implements UserDaoInterface
         $user = User::find($request->hidden_id);
         $user->username = $request->username;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->password = Hash::make($request->password_confirmation);
         $user->type = $request->type;
         $user->gender = $request->gender;
         $user->updated_at = now();
-        // $data = $request->all();
-        // $check = $this->create($data);
         $user->update();
         return $user;
     }
@@ -104,7 +100,7 @@ class UserDao implements UserDaoInterface
         'password' => Hash::make($data['password']),
         'gender' => $data['gender'],
         'type' => $data['type'],
-        // 'created_at' => now(),
+        'created_at' => now(),
       ]);
     }
 }

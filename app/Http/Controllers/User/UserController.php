@@ -7,6 +7,7 @@ use App\Exports\ExportUser;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CreateUserRequest;
 use App\Http\Requests\User\ImportUserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
 use App\Imports\ImportUser;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -64,7 +65,8 @@ class UserController extends Controller
     /**
      * Edit User
      */
-    public function editUser(Request $request,$id){
+    public function editUser(UpdateUserRequest $request,$id){
+        $request->validated();
         $this->userService->editUser($request, $id);
         return redirect()->route('userList.show');
     }
@@ -97,5 +99,9 @@ class UserController extends Controller
      */
     public function exportUsers(Request $request){
         return Excel::download(new ExportUser, 'users.xlsx');
+    }
+
+    public function userProfile(){
+        
     }
 }
