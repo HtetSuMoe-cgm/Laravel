@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-                <div class="col col-md-6"><b>User List</b></div>
+                <div class="col col-md-6"><b>Post List</b></div>
                 <div class="col col-md-6">
                     <a href="{{ route('createPost.show') }}" class="btn btn-success btn-sm float-right">Add</a>
                 </div>
@@ -27,7 +27,7 @@
                                 <td><img src="/images/{{ $posts->post_img }}" width="100px"></td>
                                 <td>{{ $posts->title }}</td>
                                 <td>{{ $posts->description }}</td>
-                                <td>{{ $posts->public_flag }}</td>
+                                <td>{{ $posts->public_flag == 1 ? 'Private' : 'Public' }}</td>
                                 <td>
                                     <ul class="list-inline m-0">
                                         <li class="list-inline-item">

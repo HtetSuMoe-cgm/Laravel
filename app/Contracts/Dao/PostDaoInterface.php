@@ -6,6 +6,8 @@ interface PostDaoInterface
 {
     public function getPostList();
 
+    public function getPublicPostList();
+    
     public function detailPost($post_id);
 
     public function dbAddPost($input);

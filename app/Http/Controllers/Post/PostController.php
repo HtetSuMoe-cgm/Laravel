@@ -22,8 +22,8 @@ class PostController extends Controller
      */
     public function Home()
     {
-        $allPost = $this->postService->getPostList();
-        return view('dashboard.home', compact('allPost'));
+        $publicPost = $this->postService->getPublicPostList();
+        return view('dashboard.home', compact('publicPost'));
     }
 
     /**
