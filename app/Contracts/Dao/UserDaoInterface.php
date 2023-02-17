@@ -23,7 +23,7 @@ interface UserDaoInterface{
 
     public function getUserId($id);
 
-    public function updateProfile($data,$user);
+    public function updateProfile($data,$id);
 
     public function changePassword($request);
 }
