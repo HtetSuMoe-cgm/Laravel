@@ -10,7 +10,7 @@
                         <h5 class="mt-0 font-weight-bold">{{ $posts->title }}</h5>
                         {{ $posts->description }}
                     </div>
-                    <a class="" href="{{ route('detailPost', $posts->id) }}">detail</a>
+                    <a class="text-decoration-none" href="{{ route('detailPost', $posts->id) }}">detail <i class="fa-solid fa-circle-right"></i></a>
                 </div>
             @endforeach
         </div>

@@ -33,7 +33,6 @@ class PostController extends Controller
     {
         $postData = $this->postService->detailPost($post_id);
         return view('posts.detailPost')->with(['postData' => $postData[0]]);
-        //return view('posts.detailPost', compact('postData'));
     }
 
     /**

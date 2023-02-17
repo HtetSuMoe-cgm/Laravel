@@ -30,7 +30,8 @@ class PostService implements PostServiceInterface
     /**
      * Get Public Post List
      */
-    public function getPublicPostList(){
+    public function getPublicPostList()
+    {
         return $this->postDao->getPublicPostList();
     }
 
@@ -47,8 +48,12 @@ class PostService implements PostServiceInterface
      */
     public function doAddPost($request)
     {
-        $file = $this->getImage($request);
-        $data = $this->getPostData($request, $file);
+        if ($request->hasFile('post_img')) {
+            $image = $this->getImage($request);
+        } else {
+            $image = "";
+        }
+        $data = $this->getPostData($request, $image);
         $this->postDao->dbAddPost($data);
     }
 
@@ -69,30 +74,37 @@ class PostService implements PostServiceInterface
         $post->title = $request->title;
         $post->description = $request->description;
         $post->public_flag = $request->public_flag;
+        $hidden_post_img = $request->hidden_post_img;
+        $image = "";
         if ($request->hasFile('post_img')) {
-            $file = $this->getImage($request);
+            $image = $this->getImage($request);
         } else {
-            $file = $this->postDao->getExistingImage($id);
+            $image = $hidden_post_img;
         }
-        $post = $this->updatePostData($request, $file);
+        $post = $this->updatePostData($request, $image);
         $this->postDao->editPost($post, $id);
     }
 
+    /**
+     * Get Image path
+     */
     private function getImage($request)
     {
         if ($image = $request->file('post_img')) {
             $destinationPath = 'images/';
             $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $postImage);
-            $input['post_img'] = "$postImage";
         }
-        return $input;
+        return $postImage;
     }
 
+    /**
+     * Create Post Data
+     */
     private function getPostData($request, $image)
     {
         return [
-            'post_img' => $image['post_img'],
+            'post_img' => $image,
             'title' => $request['title'],
             'description' => $request['description'],
             'public_flag' => $request['public_flag'],
@@ -101,10 +113,13 @@ class PostService implements PostServiceInterface
         ];
     }
 
+    /**
+     * Update Post Data
+     */
     private function updatePostData($request, $image)
     {
         return [
-            'post_img' => $image['post_img'],
+            'post_img' => $image,
             'title' => $request->title,
             'description' => $request->description,
             'public_flag' => $request->public_flag,

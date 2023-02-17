@@ -16,15 +16,8 @@
                             {{ Form::label('post_img', 'Image', ['class' => 'col-md-4 col-form-label text-md-right']) }}
                             <div class="col-md-6">
                                 {{ Form::file('post_img', ['class' => 'form-control']) }}
-                                @error('post_img')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
                             </div>
-
-                            {{-- <img src="/images/{{ $post->post_img }}" width="100px"> --}}
-                            {{-- {{Form::image('image', asset('images/' . $post->post_img), ['width' => '100px']) }} --}}
                             {{ Form::hidden('hidden_post_img', $post->post_img) }}
-
                         </div>
                         <div class="form-group row">
                             {{ Form::label('title', 'Title', ['class' => 'col-md-4 col-form-label text-md-right']) }}
