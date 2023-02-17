@@ -5,10 +5,12 @@ namespace App\Http\Controllers\User;
 use App\Contracts\Services\UserServiceInterface;
 use App\Exports\ExportUser;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\ChangePasswordRequest;
 use App\Http\Requests\User\CreateUserRequest;
 use App\Http\Requests\User\ImportUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Imports\ImportUser;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -22,7 +24,7 @@ class UserController extends Controller
     }
 
     /**
-     * 
+     *
      */
     public function Welcome()
     {
@@ -35,20 +37,22 @@ class UserController extends Controller
     public function userList()
     {
         $userList = $this->userService->getUserList();
-        return view('user.admin.userList',compact('userList'));
+        return view('user.admin.userList', compact('userList'));
     }
 
     /**
      * Show Create User Form
      */
-    public function createUserForm(){
+    public function createUserForm()
+    {
         return view('user.admin.create');
     }
 
     /**
      * Create User By Admin
      */
-    public function createUser(CreateUserRequest $request){
+    public function createUser(CreateUserRequest $request)
+    {
         $request->validated();
         $this->userService->doAddUser($request);
         return redirect()->route('userList.show');
@@ -57,7 +61,8 @@ class UserController extends Controller
     /**
      * Show Edit User Form
      */
-    public function editUserForm($id){
+    public function editUserForm($id)
+    {
         $user = $this->userService->editUserForm($id);
         return view('user.admin.edit', compact('user'));
     }
@@ -65,7 +70,8 @@ class UserController extends Controller
     /**
      * Edit User
      */
-    public function editUser(UpdateUserRequest $request,$id){
+    public function editUser(UpdateUserRequest $request, $id)
+    {
         $request->validated();
         $this->userService->editUser($request, $id);
         return redirect()->route('userList.show');
@@ -74,7 +80,8 @@ class UserController extends Controller
     /**
      * Delete User
      */
-    public function deleteUser($id){
+    public function deleteUser($id)
+    {
         $this->userService->deleteUser($id);
         return redirect()->route('userList.show');
     }
@@ -82,14 +89,16 @@ class UserController extends Controller
     /**
      * Import Exel View
      */
-    public function importView(Request $request){
+    public function importView(Request $request)
+    {
         return view('importFile');
     }
 
     /**
      * Import User
      */
-    public function importUsers(ImportUserRequest $request){
+    public function importUsers(ImportUserRequest $request)
+    {
         Excel::import(new ImportUser, $request->file('file')->store('files'));
         return redirect()->back();
     }
@@ -97,11 +106,44 @@ class UserController extends Controller
     /**
      * Export User
      */
-    public function exportUsers(Request $request){
+    public function exportUsers(Request $request)
+    {
         return Excel::download(new ExportUser, 'users.xlsx');
     }
 
-    public function userProfile(){
-        
+    /**
+     * View User Profile
+     */
+    public function userProfile($id)
+    {
+        $user = $this->userService->getUserId($id);
+        return view('user.userProfile')->with(['user' => $user[0]]);
+    }
+
+    /**
+     * Update User Profile
+     */
+    public function updateProfile(Request $request, $id)
+    {
+        $this->userService->updateProfile($request, $id);
+        return redirect()->back()->with('success', 'Profile updated successfully.');
+    }
+
+    /**
+     * Change Password Form
+     */
+    public function changePasswordForm()
+    {
+        return view('user.changePassword');
+    }
+
+    /**
+     * Change Password
+     */
+    public function changePassword(ChangePasswordRequest $request)
+    {
+        $request->validated();
+        $this->userService->changePassword($request);
+        return redirect()->back()->with('success', 'Password changed successfully.');
     }
 }

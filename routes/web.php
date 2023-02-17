@@ -35,6 +35,10 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/post/edit/{post}', [PostController::class, 'editPostForm'])->name('editPost.show');
     Route::post('/post/edit/{post}', [PostController::class, 'editPost'])->name('editPost.perform');
     Route::delete('/post/delete/{id}', [PostController::class, 'deletePost'])->name('deletePost.perform');
+    Route::get('/profile/{id}', [UserController::class, 'userProfile'])->name('userProfile.show');
+    Route::post('/profile/edit/{id}', [UserController::class, 'updateProfile'])->name('updateUserProfile.perform');
+    Route::get('/password/change', [UserController::class, 'changePasswordForm'])->name('changePassword.show');
+    Route::post('/password/change', [UserController::class, 'changePassword'])->name('changePassword.perform');
 });
 
 //Route User

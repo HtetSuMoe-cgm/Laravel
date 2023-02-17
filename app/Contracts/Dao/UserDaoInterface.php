@@ -20,4 +20,10 @@ interface UserDaoInterface{
     public function getResetData($request);
 
     public function resetPassword($request);
+
+    public function getUserId($id);
+
+    public function updateProfile($data,$user);
+
+    public function changePassword($request);
 }

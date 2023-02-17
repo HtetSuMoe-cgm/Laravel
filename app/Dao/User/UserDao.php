@@ -12,7 +12,8 @@ class UserDao implements UserDaoInterface
     /**
      * User Register
      */
-    public function register($request){
+    public function register($request)
+    {
         $data = $request->all();
         $check = $this->create($data);
     }
@@ -20,7 +21,8 @@ class UserDao implements UserDaoInterface
     /**
      * Get User List
      */
-    public function getUserList(){
+    public function getUserList()
+    {
         $userList = DB::table('users')->get();
         return $userList;
     }
@@ -28,7 +30,8 @@ class UserDao implements UserDaoInterface
     /**
      * Create User By Admin
      */
-    public function dbAddUser($request){
+    public function dbAddUser($request)
+    {
         $data = $request->all();
         $check = $this->create($data);
     }
@@ -36,7 +39,8 @@ class UserDao implements UserDaoInterface
     /**
      * Show Edit User Form
      */
-    public function editUserForm($id){
+    public function editUserForm($id)
+    {
         $user = User::find($id);
         return User::where('id', $user->id)->first();
     }
@@ -44,7 +48,8 @@ class UserDao implements UserDaoInterface
     /**
      * Edit User By Admin
      */
-    public function editUser($request,$id){
+    public function editUser($request, $id)
+    {
         $user = User::find($request->hidden_id);
         $user->username = $request->username;
         $user->email = $request->email;
@@ -55,7 +60,11 @@ class UserDao implements UserDaoInterface
         return $user;
     }
 
-    public function deleteUser($id){
+    /**
+     * Delete User
+     */
+    public function deleteUser($id)
+    {
         User::where('id', $id)->delete();
     }
 
@@ -94,13 +103,43 @@ class UserDao implements UserDaoInterface
      */
     public function create(array $data)
     {
-      return User::create([
-        'username' => $data['username'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password']),
-        'gender' => $data['gender'],
-        'type' => $data['type'],
-        'created_at' => now(),
-      ]);
+        return User::create([
+            'username' => $data['username'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'gender' => $data['gender'],
+            'type' => $data['type'],
+            'created_at' => now(),
+        ]);
+    }
+
+    /**
+     * Get user by user id
+     */
+    public function getUserId($id)
+    {
+        return User::where('id', $id)->get();
+    }
+
+    /**
+     * Update User Profile
+     */
+    public function updateProfile($request, $id)
+    {
+        $user = User::find($request->hidden_id);
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->gender = $request->gender;
+        $user->updated_at = now();
+        $user->update();
+        return $user;
+    }
+
+    /**
+     * Change Password
+     */
+    public function changePassword($request)
+    {
+        User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
     }
 }

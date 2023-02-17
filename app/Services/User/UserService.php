@@ -19,42 +19,48 @@ class UserService implements UserServiceInterface
     /**
      * User Register
      */
-    public function register($request){
+    public function register($request)
+    {
         $this->userDao->register($request);
     }
 
     /**
      * Get User List
      */
-    public function getUserList(){
+    public function getUserList()
+    {
         return $this->userDao->getUserList();
     }
 
     /**
      * Create User by Admin
      */
-    public function doAddUser($request){
+    public function doAddUser($request)
+    {
         $this->userDao->dbAddUser($request);
     }
 
     /**
      * Show Edit User Form
      */
-    public function editUserForm($id){
+    public function editUserForm($id)
+    {
         return $this->userDao->editUserForm($id);
     }
 
     /**
      * Edit User
      */
-    public function editUser($request,$id){
-        $this->userDao->editUser($request,$id);
+    public function editUser($request, $id)
+    {
+        $this->userDao->editUser($request, $id);
     }
 
     /**
      * Delete User
      */
-    public function deleteUser($id){
+    public function deleteUser($id)
+    {
         $this->userDao->deleteUser($id);
     }
 
@@ -85,5 +91,29 @@ class UserService implements UserServiceInterface
     public function resetPassword($request)
     {
         $this->userDao->resetPassword($request);
+    }
+
+    /**
+     * Get User by id
+     */
+    public function getUserId($id)
+    {
+        return $this->userDao->getUserId($id);
+    }
+
+    /**
+     * Update User Profile
+     */
+    public function updateProfile($request, $id)
+    {
+        $this->userDao->updateProfile($request, $id);
+    }
+
+    /**
+     * Change Password
+     */
+    public function changePassword($request)
+    {
+        $this->userDao->changePassword($request);
     }
 }

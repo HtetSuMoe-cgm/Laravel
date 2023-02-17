@@ -20,4 +20,10 @@ interface UserServiceInterface
     public function getResetData($request);
 
     public function resetPassword($request);
+
+    public function getUserId($id);
+
+    public function updateProfile($request,$id);
+
+    public function changePassword($request);
 }
