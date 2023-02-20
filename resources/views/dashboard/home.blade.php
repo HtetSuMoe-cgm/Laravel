@@ -13,6 +13,10 @@
                     <a class="text-decoration-none" href="{{ route('detailPost', $posts->id) }}">detail <i class="fa-solid fa-circle-right"></i></a>
                 </div>
             @endforeach
+           
+        </div>
+        <div class="d-flex justify-content-center">
+            {{ $publicPost->links() }}
         </div>
     </main>
 @endsection
