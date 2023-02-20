@@ -115,6 +115,6 @@ class AuthController extends Controller
 
         $this->userService->resetPassword($request);
 
-        return redirect()->route('login.show')->with('message', 'Your password has been changed!');
+        return redirect()->back()->with('message', 'Your password has been changed!');
     }
 }
