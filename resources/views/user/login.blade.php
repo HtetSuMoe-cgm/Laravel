@@ -3,28 +3,19 @@
     <div class="wrapper fadeInDown">
         <div class="formContent">
             {{ Form::open(['method' => 'post', 'route' => 'login.perform']) }}
-            {{ Form::email('email', '', ['class' => 'login fadeIn'.($errors->has('email') ? ' is-invalid' : ''), 'placeholder' => 'email']) }}
-            @if ($errors->has('email'))
-                @error('email')
-                    <span class="error invalid-feedback" role="alert">
-                        {{ $message }}
-                    </span>
-                @enderror
-            @endif
-            {{ Form::password('password', ['class' => 'login fadeIn'.($errors->has('password') ? ' is-invalid' : ''), 'placeholder' => 'password']) }}
-            @if ($errors->has('password'))
-                @error('password')
-                    <span class="error invalid-feedback" role="alert">
-                        {{ $message }}
-                    </span>
-                @enderror
-            @endif
+            {{ Form::email('email', '', ['class' => 'login fadeIn', 'placeholder' => 'email']) }}
+            @error('email')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
+            {{ Form::password('password', ['class' => 'login fadeIn', 'placeholder' => 'password']) }}
+            @error('password')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
             {{ Form::submit('Login', ['class' => 'btnLogin fadeIn']) }}
             {{ Form::close() }}
             <div class="formFooter">
-                <a href="{{ route('user.forgotPassword.show') }}">Forgot Password?</a>
+                <a class="text-decoration-none" href="{{ route('user.forgotPassword.show') }}">Forgot Password?</a>
             </div>
-
         </div>
     </div>
 @endsection
