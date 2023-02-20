@@ -21,9 +21,8 @@ return new class extends Migration
             $table->tinyInteger('public_flag')->default(1);//private -1 / public - 0
             $table->foreignId('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('updated_by')->nullable()->references('id')->on('users')->onDelete('cascade');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
