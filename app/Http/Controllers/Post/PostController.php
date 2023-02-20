@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Post;
 
 use App\Contracts\Services\PostServiceInterface;
+use App\Exports\ExportPosts;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\CreatePostRequest;
 use App\Http\Requests\Post\UpdatePostRequest;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PostController extends Controller
 {
@@ -88,5 +90,13 @@ class PostController extends Controller
     {
         $this->postService->deletePost($id);
         return redirect()->route('postList.show');
+    }
+
+    /**
+     * Export Post
+     */
+    public function exportPosts(Request $request)
+    {
+        return Excel::download(new ExportPosts, 'posts.xlsx');
     }
 }
