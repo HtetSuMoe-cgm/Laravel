@@ -7,6 +7,8 @@ interface PostServiceInterface
 
     public function getPublicPostList();
 
+    public function getPostsByUserId($userId);
+
     public function detailPost($post_id);
 
     public function doAddPost($request);

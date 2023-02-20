@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\CreatePostRequest;
 use App\Http\Requests\Post\UpdatePostRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PostController extends Controller
@@ -42,7 +43,13 @@ class PostController extends Controller
      */
     public function postList()
     {
-        $postList = $this->postService->getPostList();
+        if (Auth()->user()->type == 'admin'){
+            $postList = $this->postService->getPostList();
+        }
+        else{
+            $userId = Auth::id();
+            $postList = $this->postService->getPostsByUserId($userId);
+        }
         return view('posts.postList', compact('postList'));
     }
 

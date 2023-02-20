@@ -19,10 +19,21 @@ class PostDao implements PostDaoInterface
     /**
      * Get Public Post Lists
      */
-    public function getPublicPostList(){
+    public function getPublicPostList()
+    {
         $publicPost = Post::where('public_flag', '=', 0)->paginate(5);
         return $publicPost;
     }
+
+    /**
+     * Get Posts by user id
+     */
+    public function getPostsByUserId($userId)
+    {
+        $posts = Post::where('created_by', $userId)->get();
+        return $posts;
+    }
+
     /**
      * Detail Post
      */

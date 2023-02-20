@@ -7,6 +7,8 @@ interface PostDaoInterface
     public function getPostList();
 
     public function getPublicPostList();
+
+    public function getPostsByUserId($userId);
     
     public function detailPost($post_id);
 
