@@ -24,7 +24,14 @@
                     @if (count($postList) > 0)
                         @foreach ($postList as $posts)
                             <tr>
-                                <td><img src="/images/{{ $posts->post_img }}" width="100px"></td>
+                                <td>
+                                    @if ($posts->post_img == '')
+                                        <img src="{{ url('/img/img_default_post.png') }}" width="100px" height="100px"
+                                            alt="header_logo">
+                                    @else
+                                        <img src="/images/{{ $posts->post_img }}" width="100px">
+                                    @endif
+                                </td>
                                 <td>{{ $posts->title }}</td>
                                 <td>{{ $posts->description }}</td>
                                 <td>{{ $posts->public_flag == 1 ? 'Private' : 'Public' }}</td>
@@ -61,8 +68,6 @@
 @endsection
 
 @section('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script type="text/javascript">
         $('.show-alert-delete-box').click(function(event) {
             var form = $(this).closest("form");
