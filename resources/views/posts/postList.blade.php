@@ -27,9 +27,9 @@
                                 <td>
                                     @if ($posts->post_img == '')
                                         <img src="{{ url('/img/img_default_post.png') }}" width="100px" height="100px"
-                                            alt="header_logo">
+                                        alt="post_img">
                                     @else
-                                        <img src="/images/{{ $posts->post_img }}" width="100px">
+                                        <img src="/images/{{ $posts->post_img }}" width="100px" alt="post_img">
                                     @endif
                                 </td>
                                 <td>{{ $posts->title }}</td>
