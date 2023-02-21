@@ -4,9 +4,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card mt-5">
-                    @if (session('success'))
+                    @if (session('update_success'))
                         <div class="alert alert-success">
-                            {{ session('success') }}
+                            {{ session('update_success') }}
                         </div>
                     @endif
                     <div class="card-header">

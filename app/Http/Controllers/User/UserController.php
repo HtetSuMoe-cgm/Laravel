@@ -10,7 +10,6 @@ use App\Http\Requests\User\CreateUserRequest;
 use App\Http\Requests\User\ImportUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Imports\ImportUser;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -126,7 +125,7 @@ class UserController extends Controller
     public function updateProfile(Request $request, $id)
     {
         $this->userService->updateProfile($request, $id);
-        return redirect()->back()->with('success', 'Profile updated successfully.');
+        return redirect()->back()->with(['update_success' => __('messages.profile.update_success')]);
     }
 
     /**
@@ -144,6 +143,6 @@ class UserController extends Controller
     {
         $request->validated();
         $this->userService->changePassword($request);
-        return redirect()->back()->with('success', 'Password changed successfully.');
+        return redirect()->back()->with(['changed_success' => __('messages.profile.password.changed_success')]);
     }
 }

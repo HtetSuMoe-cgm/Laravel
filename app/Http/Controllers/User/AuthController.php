@@ -36,20 +36,9 @@ class AuthController extends Controller
     public function userLogin(LoginRequest $request)
     {
         $request->validated();
-        //$input = $request->all();
-        // if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
-        //     if (auth()->user()->type == 'admin') {
-        //         return redirect()->route('home');
-        //     } else {
-        //         return redirect()->route('home');
-        //     }
-        // } else {
-        //     return redirect()->route('login.show')
-        //         ->with('error', 'Email-Address And Password Are Wrong.');
-        // }
         if (!Auth::attempt(request(['email', 'password']))) {
             throw ValidationException::withMessages([
-                'invalid' => ['Incorrect email or password.'],
+                'invalid' => __('messages.login.invalid')
             ]);
         }
         return redirect()->route('home');
@@ -98,7 +87,7 @@ class AuthController extends Controller
     {
         $request->validated();
         $this->userService->forgotPassword($request);
-        return back()->with('message', 'We have e-mailed your password reset link!');
+        return back()->with(['send_success' => __('messages.email.send_success')]);
     }
 
     /**
@@ -122,6 +111,6 @@ class AuthController extends Controller
 
         $this->userService->resetPassword($request);
 
-        return redirect()->back()->with('message', 'Your password has been changed!');
+        return redirect()->back()->with(['changed_success' => __('messages.email.password.changed_success')]);
     }
 }

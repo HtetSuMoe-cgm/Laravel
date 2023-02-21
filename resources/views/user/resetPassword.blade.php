@@ -4,9 +4,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card mt-5">
-                    @if (session('message'))
+                    @if (session('changed_success'))
                         <div class="alert alert-success" role="alert">
-                            {{ session('message') }}
+                            {{ session('changed_success') }}
                         </div>
                     @endif
                     <div class="card-header">Reset Password</div>
