@@ -18,8 +18,7 @@ class PostFactory extends Factory
     {
         return [
             'title' => $this->faker->title(),
-            'description' => $this->faker->paragraph,
-            'post_img' => $this->faker->imageUrl($width = 640, $height = 480),
+            'description' => $this->faker->paragraph(2),
             'public_flag' => $this->faker->randomElement([0,1]),
             'created_by' => $this->faker->randomElement([1,2]),
         ];
