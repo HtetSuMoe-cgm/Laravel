@@ -25,7 +25,6 @@
                             <div class="col-md-6 offset-md-4">
                                 {{ Form::submit('Send Password Reset Link', ['class' => 'btn btn-primary']) }}
                             </div>
-                            <button class="btn btn-primary">Back</button>
                         </div>
                         {{ Form::close() }}
                     </div>

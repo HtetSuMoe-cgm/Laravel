@@ -5,12 +5,12 @@
             <div class="row">
                 <div class="col col-md-6"><b>Post List</b></div>
                 <div class="col col-md-6">
-                    <a href="{{ route('createPost.show') }}" class="btn btn-success btn-sm float-right">Add</a>
+                    <a href="{{ route('createPost.show') }}" class="btn btn-success btn-sm float-right">Add Post</a>
                 </div>
             </div>
         </div>
         <div class="card-body">
-            <table id="data-table" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+            <table id="data-table" class="table table-striped table-bordered dt-responsive" style="width:100%">
                 <thead>
                     <tr>
                         <th>Post Image</th>
