@@ -3,6 +3,9 @@
     <div class="wrapper fadeInDown">
         <div class="formContent">
             {{ Form::open(['method' => 'post', 'route' => 'login.perform']) }}
+            @if ($errors->has('invalid'))
+            <div class="text-danger">{{ $errors->first('invalid') }}</div>
+            @endif
             {{ Form::email('email', '', ['class' => 'login fadeIn', 'placeholder' => 'email']) }}
             @error('email')
                 <div class="text-danger">{{ $message }}</div>

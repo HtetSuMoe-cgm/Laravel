@@ -11,6 +11,7 @@ use App\Http\Requests\User\SendPasswordResetMailRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -34,18 +35,24 @@ class AuthController extends Controller
      */
     public function userLogin(LoginRequest $request)
     {
-        $input = $request->all();
-
-        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
-            if (auth()->user()->type == 'admin') {
-                return redirect()->route('home');
-            } else {
-                return redirect()->route('home');
-            }
-        } else {
-            return redirect()->route('login.show')
-                ->with('error', 'Email-Address And Password Are Wrong.');
+        $request->validated();
+        //$input = $request->all();
+        // if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+        //     if (auth()->user()->type == 'admin') {
+        //         return redirect()->route('home');
+        //     } else {
+        //         return redirect()->route('home');
+        //     }
+        // } else {
+        //     return redirect()->route('login.show')
+        //         ->with('error', 'Email-Address And Password Are Wrong.');
+        // }
+        if (!Auth::attempt(request(['email', 'password']))) {
+            throw ValidationException::withMessages([
+                'invalid' => ['Incorrect email or password.'],
+            ]);
         }
+        return redirect()->route('home');
     }
 
     /**
