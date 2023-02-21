@@ -42,22 +42,21 @@
                     @endguest --}}
                     @if (Auth::check())
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('userProfile.show', Auth::user()->id) }}">
+                            {{-- <a class="nav-link" href="{{ route('userProfile.show', Auth::user()->id) }}">
                                 <i class="fa-solid fa-user"></i>
                                 {{ Auth::user()->username }}
-                            </a>
+                            </a> --}}
 
-                            {{-- <div class="dropdown ">
+                            <div class="dropdown ">
                                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa-solid fa-user"></i>{{ Auth::user()->username }}
+                                    <i class="fa-solid fa-user"></i> {{ Auth::user()->username }}
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Item 1</a>
-                                    <a class="dropdown-item" href="#">Item 2</a>
-                                    <a class="dropdown-item" href="#">Item 3</a>
+                                    <a class="dropdown-item" href="{{ route('userProfile.show', Auth::user()->id) }}">User Profile</a>
+                                    <a class="dropdown-item" href="{{ route('changePassword.show') }}">Change Password</a>
                                 </div>
-                            </div> --}}
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout.perform') }}">Logout</a>
