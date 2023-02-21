@@ -47,8 +47,8 @@
                                 {{ Auth::user()->username }}
                             </a> --}}
 
-                            <div class="dropdown ">
-                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle nav-link" type="button" id="dropdownMenuButton"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa-solid fa-user"></i> {{ Auth::user()->username }}
                                 </button>
