@@ -12,7 +12,9 @@ class PostDao implements PostDaoInterface
      */
     public function getPostList()
     {
-        $postList = Post::orderBy('id')->get();
+        $postList = Post::orderBy('id')
+            ->wherenull('posts.deleted_at')
+            ->get();
         return $postList;
     }
 
@@ -21,7 +23,9 @@ class PostDao implements PostDaoInterface
      */
     public function getPublicPostList()
     {
-        $publicPost = Post::where('public_flag', '=', 0)->paginate(5);
+        $publicPost = Post::where('public_flag', '=', 0)
+            ->wherenull('posts.deleted_at')
+            ->paginate(5);
         return $publicPost;
     }
 
@@ -30,7 +34,9 @@ class PostDao implements PostDaoInterface
      */
     public function getPostsByUserId($userId)
     {
-        $posts = Post::where('created_by', $userId)->get();
+        $posts = Post::where('created_by', $userId)
+            ->wherenull('posts.deleted_at')
+            ->get();
         return $posts;
     }
 

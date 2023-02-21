@@ -23,7 +23,9 @@ class UserDao implements UserDaoInterface
      */
     public function getUserList()
     {
-        $userList = DB::table('users')->get();
+        $userList = DB::table('users')
+                    ->wherenull('users.deleted_at')
+                    ->get();
         return $userList;
     }
 
