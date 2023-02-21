@@ -12,13 +12,14 @@
                             {{ Form::open(['method' => 'post', 'route' => 'import-users', 'files' => true]) }}
                             @if (count($errors) > 0)
                                 <div class="col-md-12">
-                                  <div class="alert alert-danger mt-5">
-                                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                      <h4><i class="icon fa fa-ban"></i> Error!</h4>
-                                      @foreach($errors->all() as $error)
-                                      {{ $error }} <br>
-                                      @endforeach      
-                                  </div>
+                                    <div class="alert alert-danger mt-5">
+                                        <button type="button" class="close" data-dismiss="alert"
+                                            aria-hidden="true">×</button>
+                                        <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                                        @foreach ($errors->all() as $error)
+                                            {{ $error }} <br>
+                                        @endforeach
+                                    </div>
                                 </div>
                             @endif
                             {{ Form::label('file', 'Choose file', ['class' => 'custom-file-label', 'id' => 'customFile']) }}
@@ -34,7 +35,7 @@
                                         </span>
                                     @enderror
                                 @endif
-                            </div> --}} 
+                            </div> --}}
                         </div>
                         <div class="col col-md-6">
                             {{ Form::submit('Import Users', ['class' => 'btn btn-primary']) }}
@@ -65,7 +66,7 @@
                                 <td>{{ $data->username }}</td>
                                 <td>{{ $data->email }}</td>
                                 <td>{{ $data->gender }}</td>
-                                <td>{{ $data->type == 1 ? 'Admin' : 'User'}}</td>
+                                <td>{{ $data->type == 1 ? 'Admin' : 'User' }}</td>
                                 <td>
                                     <ul class="list-inline m-0">
                                         <li class="list-inline-item">
@@ -128,8 +129,8 @@
             </table>
             <a class="btn btn-success mt-3" href="{{ route('export-users') }}">Export Users</a>
         </div>
-    @endsection
-</div>
+    </div>
+@endsection
 
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
