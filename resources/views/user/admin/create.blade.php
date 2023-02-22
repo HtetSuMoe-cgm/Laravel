@@ -65,9 +65,12 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                {{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
+                        <div class="row mb-0">
+                            <div class="col-md-4 offset-md-4">
+                                {{ Form::submit('Create User', ['class' => 'btn btn-outline-primary']) }}
+                            </div>
+                            <div class="col-md-2">
+                                <a href="{{ route('userList.show') }}" class="btn btn-outline-primary">Back</a>
                             </div>
                         </div>
                         {{ Form::close() }}

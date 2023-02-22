@@ -24,6 +24,14 @@
                                 <p class="card-text">{{ $postData->description }}</p>
                             </div>
                         </div>
+                        <div class="row mt-3">
+                            <div class="col col-md-6">
+                                Created by :
+                            </div>
+                            <div class="col col-md-6">
+                                {{ $postData->username }}
+                            </div>
+                        </div>
                         <div class="container d-flex">
                             <div class="ml-auto">
                                 <a href="{{ route('home') }}" class="text-decoration-none"><i

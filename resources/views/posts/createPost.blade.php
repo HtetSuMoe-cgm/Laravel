@@ -38,19 +38,22 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-6 text-right">
+                            <div class="col-md-6 offset-md-5">
                                 {{ Form::radio('public_flag', 0, '', ['class' => 'form-check-input', 'id' => 'inlineRadio1']) }}
                                 {{ Form::label('inlineRadio1', 'Public', ['class' => 'form-check-label mr-5']) }}
                                 {{ Form::radio('public_flag', 1, '', ['class' => 'form-check-input', 'id' => 'inlineRadio2']) }}
                                 {{ Form::label('inlineRadio2', 'Private', ['class' => 'form-check-label']) }}
+                                @error('public_flag')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
-                            @error('public_flag')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
                         </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                {{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
+                        <div class="row mb-0">
+                            <div class="col-md-4 offset-md-4">
+                                {{ Form::submit('Create Post', ['class' => 'btn btn-outline-primary']) }}
+                            </div>
+                            <div class="col-md-2">
+                                <a href="{{ route('postList.show') }}" class="btn btn-outline-primary">Back</a>
                             </div>
                         </div>
                         {{ Form::close() }}

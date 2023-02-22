@@ -32,7 +32,7 @@ class PostController extends Controller
     /**
      * Detail Post
      */
-    public function DetailPost($post_id)
+    public function detailPost($post_id)
     {
         $postData = $this->postService->detailPost($post_id);
         return view('posts.detailPost')->with(['postData' => $postData[0]]);
@@ -105,5 +105,15 @@ class PostController extends Controller
     public function exportPosts(Request $request)
     {
         return Excel::download(new ExportPosts, 'posts.xlsx');
+    }
+
+    /**
+     * Post Detail by login user
+     */
+    public function postDetail($post_id)
+    {
+        $postData = $this->postService->detailPost($post_id);
+        //dd($postData);
+        return view('user.postDetail')->with(['postData' => $postData[0]]);
     }
 }

@@ -12,10 +12,6 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col col-md-6"><b>User Profile</b></div>
-                            <div class="col col-md-6">
-                                <a href="{{ route('changePassword.show') }}"
-                                    class="btn btn-success btn-sm float-right">Change Password</a>
-                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -58,7 +54,10 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 {{ Form::hidden('hidden_id', $user->id) }}
-                                {{ Form::submit('Update User Profile', ['class' => 'btn btn-primary']) }}
+                                {{ Form::submit('Update User Profile', ['class' => 'btn btn-outline-primary']) }}
+                            </div>
+                            <div class="col-md-2">
+                                <a href="{{ route('userList.show') }}" class="btn btn-outline-primary">Back</a>
                             </div>
                         </div>
                         {{ Form::close() }}

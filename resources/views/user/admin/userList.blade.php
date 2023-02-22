@@ -10,37 +10,26 @@
                     <div class="row">
                         <div class="col col-md-6">
                             {{ Form::open(['method' => 'post', 'route' => 'import-users', 'files' => true]) }}
-                            @if (count($errors) > 0)
-                                <div class="col-md-12">
-                                    <div class="alert alert-danger mt-5">
-                                        <button type="button" class="close" data-dismiss="alert"
-                                            aria-hidden="true">×</button>
-                                        <h4><i class="icon fa fa-ban"></i> Error!</h4>
-                                        @foreach ($errors->all() as $error)
-                                            {{ $error }} <br>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @endif
                             {{ Form::label('file', 'Choose file', ['class' => 'custom-file-label', 'id' => 'customFile']) }}
                             <div class="custom-file text-left">
                                 {{ Form::file('file', ['class' => 'custom-file-input', 'for' => 'customFile']) }}
                             </div>
-                            {{-- <div class="custom-file text-left">
-                                {{ Form::file('file', ['class' => 'custom-file-input' . ($errors->has('file') ? ' is-invalid' : ''), 'for' => 'customFile']) }}
-                                @if ($errors->has('file'))
-                                    @error('file')
-                                        <span class="error invalid-feedback" role="alert">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
-                                @endif
-                            </div> --}}
                         </div>
                         <div class="col col-md-6">
                             {{ Form::submit('Import Users', ['class' => 'btn btn-primary']) }}
                         </div>
                         {{ Form::close() }}
+                        @if (count($errors) > 0)
+                            <div class="col-md-12">
+                                <div class="alert alert-danger mt-5">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                                    @foreach ($errors->all() as $error)
+                                        {{ $error }} <br>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="col col-md-6">

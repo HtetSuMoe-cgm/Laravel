@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table id="data-table" class="table table-striped table-bordered dt-responsive" style="width:100%">
+            <table id="data-table" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>Post Image</th>
@@ -33,7 +33,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $posts->title }}</td>
-                                <td>{{ $posts->description }}</td>
+                                <td class="text-truncate" style="max-width: 150px;">{{ $posts->description }}</td>
                                 <td>{{ $posts->public_flag == 1 ? 'Private' : 'Public' }}</td>
                                 <td>
                                     <ul class="list-inline m-0">
@@ -51,6 +51,11 @@
                                                     data-toggle="tooltip" title='Delete'><i
                                                         class="fa fa-trash"></i></button>
                                             </form>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="{{ route('postDetail.show', $posts->id) }}" class="btn btn-sm rounded-0"
+                                                type="button" data-toggle="tooltip" data-placement="top" title="detail"><i class="fa-sharp fa-solid fa-circle-info"></i></a>
+                                            
                                         </li>
                                     </ul>
                                 </td>
