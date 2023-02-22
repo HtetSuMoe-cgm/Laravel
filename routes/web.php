@@ -28,7 +28,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('/forget-password', [AuthController::class, 'sendEmail'])->name('user.sendEmail');
     Route::get('resetPassword/{token}', [AuthController::class, 'resetPasswordForm'])->name('user.resetPasswordForm.show');
     Route::post('resetPassword', [AuthController::class, 'resetPassword'])->name('user.resetPassword');
-    Route::get('/detailPost/{post_id}', [PostController::class, 'DetailPost'])->name('detailPost');
+    Route::get('/detailPost/{post_id}', [PostController::class, 'detailPost'])->name('detailPost');
     Route::get('/postList', [PostController::class, 'postList'])->name('postList.show');
     Route::get('/post/create', [PostController::class, 'createPostForm'])->name('createPost.show');
     Route::post('/post/create', [PostController::class, 'createPost'])->name('createPost.perform');
@@ -40,6 +40,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('/profile/edit/{id}', [UserController::class, 'updateProfile'])->name('updateUserProfile.perform');
     Route::get('/password/change', [UserController::class, 'changePasswordForm'])->name('changePassword.show');
     Route::post('/password/change', [UserController::class, 'changePassword'])->name('changePassword.perform');
+    Route::get('/post/detail/{post_id}', [PostController::class, 'postDetail'])->name('postDetail.show');
 });
 
 //Route User
