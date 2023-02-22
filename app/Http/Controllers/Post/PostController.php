@@ -113,7 +113,6 @@ class PostController extends Controller
     public function postDetail($post_id)
     {
         $postData = $this->postService->detailPost($post_id);
-        //dd($postData);
         return view('user.postDetail')->with(['postData' => $postData[0]]);
     }
 }
