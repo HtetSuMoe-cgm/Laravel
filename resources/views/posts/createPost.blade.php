@@ -7,11 +7,16 @@
                     <div class="card-header">Create Post</div>
                     <div class="card-body">
                         {{ Form::open(['method' => 'post', 'route' => 'createPost.perform', 'files' => true]) }}
-
+                        <div class="form-group row">
+                            <div class="col-md-4 mx-auto">
+                                <div id="divImageMediaPreview">
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             {!! Form::label('post_img', 'Image', ['class' => 'col-md-4 col-form-label text-md-right']) !!}
                             <div class="col-md-6">
-                                {!! Form::file('post_img', ['class' => 'form-control']) !!}
+                                {!! Form::file('post_img', ['class' => 'form-control file-input']) !!}
                                 @error('post_img')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -62,4 +67,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script type="text/javascript" src="{{ asset('js/createPost.js') }}"></script>
 @endsection
