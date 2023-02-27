@@ -32,9 +32,9 @@ class PostController extends Controller
     /**
      * Detail Post
      */
-    public function detailPost($post_id)
+    public function detailPost($postId)
     {
-        $postData = $this->postService->detailPost($post_id);
+        $postData = $this->postService->detailPost($postId);
         return view('posts.detailPost')->with(['postData' => $postData[0]]);
     }
 
