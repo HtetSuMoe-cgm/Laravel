@@ -38,7 +38,7 @@ class AuthController extends Controller
         $request->validated();
         if (!Auth::attempt(request(['email', 'password']))) {
             throw ValidationException::withMessages([
-                'invalid' => __('messages.login.invalid')
+                'invalid' => __('messages.login.invalid'),
             ]);
         }
         return redirect()->route('home');
@@ -55,7 +55,8 @@ class AuthController extends Controller
     /**
      * User Register
      */
-    public function register(RegisterRequest $request){
+    public function register(RegisterRequest $request)
+    {
         $request->validated();
         $this->userService->register($request);
         return view('user.login');
@@ -106,7 +107,7 @@ class AuthController extends Controller
         $request->validated();
         $updatePassword = $this->userService->getResetData($request);
         if (!$updatePassword) {
-            return back()->withInput()->with('error', 'Invalid token!');
+            return back()->withInput()->with(['error' => __('messages.email.error')]);
         }
 
         $this->userService->resetPassword($request);

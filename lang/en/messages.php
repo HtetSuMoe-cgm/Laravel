@@ -7,6 +7,7 @@ return [
 
     'email' => [
         'send_success' => 'We have e-mailed your password reset link!',
+        'error' => 'Invalid token!',
         'password' => [
             'changed_success' => 'Your password has been changed!',
         ],

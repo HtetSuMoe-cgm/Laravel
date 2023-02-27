@@ -43,10 +43,9 @@ class PostController extends Controller
      */
     public function postList()
     {
-        if (Auth()->user()->type == 'admin'){
+        if (Auth()->user()->type == 'admin') {
             $postList = $this->postService->getPostList();
-        }
-        else{
+        } else {
             $userId = Auth::id();
             $postList = $this->postService->getPostsByUserId($userId);
         }
