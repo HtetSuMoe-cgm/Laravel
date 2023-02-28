@@ -9,7 +9,7 @@ interface PostServiceInterface
 
     public function getPostsByUserId($userId);
 
-    public function detailPost($post_id);
+    public function detailPost($postId);
 
     public function doAddPost($request);
 

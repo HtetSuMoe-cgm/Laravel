@@ -109,9 +109,9 @@ class PostController extends Controller
     /**
      * Post Detail by login user
      */
-    public function postDetail($post_id)
+    public function postDetail($postId)
     {
-        $postData = $this->postService->detailPost($post_id);
+        $postData = $this->postService->detailPost($postId);
         return view('user.postDetail')->with(['postData' => $postData[0]]);
     }
 }

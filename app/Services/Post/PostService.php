@@ -46,9 +46,9 @@ class PostService implements PostServiceInterface
     /**
      * Detail Post
      */
-    public function detailPost($post_id)
+    public function detailPost($postId)
     {
-        return $this->postDao->detailPost($post_id);
+        return $this->postDao->detailPost($postId);
     }
 
     /**
