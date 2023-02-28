@@ -27,7 +27,7 @@
                                 <td>
                                     @if ($posts->post_img == '')
                                         <img src="{{ url('/img/img_default_post.png') }}" width="100px" height="100px"
-                                        alt="post_img">
+                                            alt="post_img">
                                     @else
                                         <img src="/images/{{ $posts->post_img }}" width="100px" alt="post_img">
                                     @endif
@@ -53,9 +53,10 @@
                                             </form>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="{{ route('postDetail.show', $posts->id) }}" class="btn btn-sm rounded-0"
-                                                type="button" data-toggle="tooltip" data-placement="top" title="detail"><i class="fa-sharp fa-solid fa-circle-info"></i></a>
-                                            
+                                            <a href="{{ route('postDetail.show', $posts->id) }}"
+                                                class="btn btn-sm rounded-0" type="button" data-toggle="tooltip"
+                                                data-placement="top" title="detail"><i
+                                                    class="fa-sharp fa-solid fa-circle-info"></i></a>
                                         </li>
                                     </ul>
                                 </td>
@@ -73,5 +74,5 @@
 @endsection
 
 @section('script')
-<script type="text/javascript" src="{{ asset('js/deleteConfirm.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/deleteConfirm.js') }}"></script>
 @endsection

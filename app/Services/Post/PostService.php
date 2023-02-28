@@ -38,7 +38,8 @@ class PostService implements PostServiceInterface
     /**
      * Get Posts by user id
      */
-    public function getPostsByUserId($userId){
+    public function getPostsByUserId($userId)
+    {
         return $this->postDao->getPostsByUserId($userId);
     }
 

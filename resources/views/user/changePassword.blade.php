@@ -45,7 +45,6 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                {{-- {{ Form::hidden('hidden_id', $user->id) }} --}}
                                 {{ Form::submit('Update Password', ['class' => 'btn btn-outline-primary']) }}
                             </div>
                             <div class="col-md-2">

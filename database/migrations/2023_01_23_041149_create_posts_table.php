@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('post_img')->nullable();
-            $table->tinyInteger('public_flag')->default(1);//private -1 / public - 0
+            $table->tinyInteger('public_flag')->default(1); //private -1 / public - 0
             $table->foreignId('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('updated_by')->nullable()->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();

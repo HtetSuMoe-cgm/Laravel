@@ -45,7 +45,7 @@ class PostDao implements PostDaoInterface
      */
     public function detailPost($postId)
     {
-        return Post::select('posts.*','users.*')
+        return Post::select('posts.*', 'users.*')
             ->join('users', 'posts.created_by', '=', 'users.id')
             ->where('posts.id', $postId)
             ->get();

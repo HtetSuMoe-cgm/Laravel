@@ -19,8 +19,8 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->title(),
             'description' => $this->faker->paragraph(),
-            'public_flag' => $this->faker->randomElement([0,1]),
-            'created_by' => $this->faker->randomElement([1,2]),
+            'public_flag' => $this->faker->randomElement([0, 1]),
+            'created_by' => $this->faker->randomElement([1, 2]),
         ];
     }
 }

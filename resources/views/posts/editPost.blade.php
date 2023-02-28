@@ -9,7 +9,7 @@
                         {{ Form::model($post, ['method' => 'post', 'route' => ['editPost.perform', $post->id], 'files' => true]) }}
                         <div class="form-group row">
                             <div class="col-md-4 mx-auto">
-                            <img src="{{ asset('images/' . $post->post_img) }}" width="100" class="img-thumbnail" />
+                                <img src="{{ asset('images/' . $post->post_img) }}" width="100" class="img-thumbnail" />
                             </div>
                         </div>
                         <div class="form-group row">

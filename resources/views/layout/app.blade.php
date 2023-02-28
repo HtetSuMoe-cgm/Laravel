@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('css/datatables/dataTables.bootstrap4.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/datatables/responsive.bootstrap4.min.css') }}">
-     <!-- for data table -->
+    <!-- for data table -->
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap_css/bootstrap.min.css') }}">
 
@@ -32,13 +32,13 @@
     <div class="container mt-5">
         @yield('main-content')
     </div>
-    
+
     <script type="text/javascript" src="{{ asset('js/datatables/jquery-3.5.1.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-    
+
     @yield('script')
-    
+
     <script src="{{ asset('js/bootstrap_js/bootstrap.bundle.min.js') }}"></script>
 
     <script type="text/javascript" src="{{ asset('js/datatables/jquery.dataTables.min.js') }}"></script>

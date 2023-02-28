@@ -20,8 +20,8 @@ class UserFactory extends Factory
         return [
             'username' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'type' => $this->faker->randomElement([0,1]),
-            'gender' => $this->faker->randomElement(['male','female']),
+            'type' => $this->faker->randomElement([0, 1]),
+            'gender' => $this->faker->randomElement(['male', 'female']),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ];
     }
@@ -33,7 +33,7 @@ class UserFactory extends Factory
      */
     public function unverified()
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }

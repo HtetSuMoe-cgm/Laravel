@@ -24,7 +24,7 @@ class ImportUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'required|file|mimes:xlsx,xls'
+            'file' => 'required|file|mimes:xlsx,xls',
         ];
     }
 }

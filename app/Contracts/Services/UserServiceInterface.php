@@ -11,7 +11,7 @@ interface UserServiceInterface
 
     public function editUserForm($id);
 
-    public function editUser($request,$id);
+    public function editUser($request, $id);
 
     public function deleteUser($id);
 
@@ -23,7 +23,7 @@ interface UserServiceInterface
 
     public function getUserId($id);
 
-    public function updateProfile($request,$id);
+    public function updateProfile($request, $id);
 
     public function changePassword($request);
 }

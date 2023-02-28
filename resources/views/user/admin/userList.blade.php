@@ -63,39 +63,6 @@
                                                 type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
                                         </li>
-                                        {{-- <li class="list-inline-item">
-                                            <a type="button" class="btn btn-sm rounded-0" data-toggle="modal"
-                                                data-target="#deleteModal" data-item="{{ $data->id }}">
-                                                <i class="fa fa-trash"></i>
-                                            </a>
-                                        </li>
-                                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Are you sure you want to delete this "{{ $data->username }} " ?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Cancel</button>
-                                                        <form  method="post" action="{{ route('deleteUser.perform', $data->id) }}">
-                                                            @csrf
-                                                            @method('post')
-                                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> --}}
-
                                         <li class="list-inline-item">
                                             <form method="POST" action="{{ route('deleteUser.perform', $data->id) }}">
                                                 @csrf

@@ -9,7 +9,7 @@ interface PostDaoInterface
     public function getPublicPostList();
 
     public function getPostsByUserId($userId);
-    
+
     public function detailPost($postId);
 
     public function dbAddPost($input);

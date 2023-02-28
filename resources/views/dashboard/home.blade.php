@@ -13,7 +13,7 @@
                     <div class="media-body text-center text-md-left ml-md-3 ml-0">
                         <h5 class="mt-0 font-weight-bold">{{ $posts->title }}</h5>
                         <p class="text-truncate" style="max-width: 150px;">{{ $posts->description }}</p>
-                        
+
                     </div>
                     <a class="text-decoration-none" href="{{ route('detailPost', $posts->id) }}">detail <i
                             class="fa-solid fa-circle-right"></i></a>
