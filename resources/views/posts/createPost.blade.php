@@ -53,11 +53,9 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mb-0">
-                            <div class="col-md-4 offset-md-4">
-                                {{ Form::submit('Create Post', ['class' => 'btn btn-outline-primary']) }}
-                            </div>
-                            <div class="col-md-2">
+                        <div class="row">
+                            <div class="col-sm-12 common-btn">
+                                {{ Form::submit('Create Post', ['class' => 'btn btn-outline-primary mr-2']) }}
                                 <a href="{{ route('postList.show') }}" class="btn btn-outline-primary">Back</a>
                             </div>
                         </div>

@@ -21,9 +21,10 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                {{ Form::submit('Send Password Reset Link', ['class' => 'btn btn-primary']) }}
+                        <div class="form-group row mt-5">
+                            <div class="col-md-12 common-btn">
+                                {{ Form::submit('Send Password Reset Link', ['class' => 'btn btn-outline-primary mr-2']) }}
+                                <a href="{{ route('login.show') }}" class="btn btn-outline-primary">Back</a>
                             </div>
                         </div>
                         {{ Form::close() }}
@@ -32,5 +33,4 @@
             </div>
         </div>
     </div>
-    @include('layout.footer')
 @endsection
