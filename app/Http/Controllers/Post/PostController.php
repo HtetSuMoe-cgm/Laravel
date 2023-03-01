@@ -43,7 +43,7 @@ class PostController extends Controller
      */
     public function postList()
     {
-        if (Auth()->user()->type == 'admin') {
+        if (Auth()->user()->type == config('constants.USER_TYPE.ADMIN')) {
             $postList = $this->postService->getPostList();
         } else {
             $userId = Auth::id();

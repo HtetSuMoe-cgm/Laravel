@@ -23,7 +23,7 @@ class PostDao implements PostDaoInterface
      */
     public function getPublicPostList()
     {
-        $publicPost = Post::where('public_flag', '=', 0)
+        $publicPost = Post::where('public_flag', '=', config('constants.PUBLIC_FLAG.PUBLIC'))
             ->wherenull('posts.deleted_at')
             ->paginate(5);
         return $publicPost;
