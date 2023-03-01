@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table id="data-table" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+            <table id="data-table" class="table table-striped table-bordered dt-responsive nowrap">
                 <thead>
                     <tr>
                         <th>Post Image</th>
@@ -74,5 +74,7 @@
 @endsection
 
 @section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/deleteConfirm.js') }}"></script>
 @endsection

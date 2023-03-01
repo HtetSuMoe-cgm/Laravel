@@ -39,7 +39,7 @@ Route::group(['prefix' => 'user'], function () {
 });
 
 //Route Admin
-Route::middleware(['auth', 'user-role:admin'])->group(function () {
+Route::middleware(['auth', 'user-role:1'])->group(function () {
     Route::get('welcome', [UserController::class, 'Welcome'])
         ->name('welcome');
     Route::get('/admin/user/list', [UserController::class, 'userList'])

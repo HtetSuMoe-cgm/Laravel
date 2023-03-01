@@ -17,7 +17,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('postList.show') }}">Posts</a>
                     </li>
-                    @if (Auth::check() && Auth::user()->type === 'admin')
+                    @if (Auth::check() && Auth::user()->type === '1')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('userList.show') }}">Users</a>
                         </li>

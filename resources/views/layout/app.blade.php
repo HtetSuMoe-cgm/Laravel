@@ -33,13 +33,11 @@
         @yield('main-content')
     </div>
 
-    <script type="text/javascript" src="{{ asset('js/datatables/jquery-3.5.1.js') }}"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-
     @yield('script')
 
     <script src="{{ asset('js/bootstrap_js/bootstrap.bundle.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('js/datatables/jquery-3.5.1.js') }}"></script>
 
     <script type="text/javascript" src="{{ asset('js/datatables/jquery.dataTables.min.js') }}"></script>
 
