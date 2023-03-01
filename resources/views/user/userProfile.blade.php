@@ -51,12 +51,10 @@
                                 {{ Form::label('inlineRadio2', 'Female', ['class' => 'form-check-label']) }}
                             </div>
                         </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                        <div class="form-group row">
+                            <div class="col-md-12 common-btn">
                                 {{ Form::hidden('hidden_id', $user->id) }}
-                                {{ Form::submit('Update User Profile', ['class' => 'btn btn-outline-primary']) }}
-                            </div>
-                            <div class="col-md-2">
+                                {{ Form::submit('Update User Profile', ['class' => 'btn btn-outline-primary mr-2']) }}
                                 <a href="{{ route('userList.show') }}" class="btn btn-outline-primary">Back</a>
                             </div>
                         </div>

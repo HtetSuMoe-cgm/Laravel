@@ -36,42 +36,6 @@ Route::group(['prefix' => 'user'], function () {
         ->name('user.resetPasswordForm.show');
     Route::post('resetPassword', [AuthController::class, 'resetPassword'])
         ->name('user.resetPassword');
-    Route::get('/profile/{id}', [UserController::class, 'userProfile'])
-        ->name('userProfile.show');
-    Route::post('/profile/edit/{id}', [UserController::class, 'updateProfile'])
-        ->name('updateUserProfile.perform');
-    Route::get('/password/change', [UserController::class, 'changePasswordForm'])
-        ->name('changePassword.show');
-    Route::post('/password/change', [UserController::class, 'changePassword'])
-        ->name('changePassword.perform');
-});
-
-Route::group(['prefix' => 'post'], function () {
-    Route::get('/detailPost/{post_id}', [PostController::class, 'detailPost'])
-        ->name('detailPost');
-    Route::get('/postList', [PostController::class, 'postList'])
-        ->name('postList.show');
-    Route::get('/create', [PostController::class, 'createPostForm'])
-        ->name('createPost.show');
-    Route::post('/create', [PostController::class, 'createPost'])
-        ->name('createPost.perform');
-    Route::get('/edit/{post}', [PostController::class, 'editPostForm'])
-        ->name('editPost.show');
-    Route::post('/edit/{post}', [PostController::class, 'editPost'])
-        ->name('editPost.perform');
-    Route::delete('/delete/{id}', [PostController::class, 'deletePost'])
-        ->name('deletePost.perform');
-    Route::get('/export-posts', [PostController::class, 'exportPosts'])
-        ->name('export-posts');
-    Route::get('/detail/{post_id}', [PostController::class, 'postDetail'])
-        ->name('postDetail.show');
-    Route::post('/selectedImage', [PostController::class, 'tempImage'])
-        ->name('tempImage.perform');
-});
-
-//Route User
-Route::middleware(['auth', 'user-role:user'])->group(function () {
-    //Route::get('/user/home', [PostController::class, 'Home'])->name('home')->middleware(isAuthMiddleware::class);
 });
 
 //Route Admin
@@ -102,5 +66,36 @@ Route::middleware(['isAuth'])->group(function () {
     Route::group(['prefix' => 'user'], function () {
         Route::get('/', [AuthController::class, 'logout'])
             ->name('logout.perform');
+        Route::get('/profile/{id}', [UserController::class, 'userProfile'])
+            ->name('userProfile.show')
+            ->middleware('check-user');
+        Route::post('/profile/edit/{id}', [UserController::class, 'updateProfile'])
+            ->name('updateUserProfile.perform')
+            ->middleware('check-user');
+        Route::get('/password/change', [UserController::class, 'changePasswordForm'])
+            ->name('changePassword.show');
+        Route::post('/password/change', [UserController::class, 'changePassword'])
+            ->name('changePassword.perform');
+    });
+
+    Route::group(['prefix' => 'post'], function () {
+        Route::get('/detailPost/{postId}', [PostController::class, 'detailPost'])
+            ->name('detailPost');
+        Route::get('/postList', [PostController::class, 'postList'])
+            ->name('postList.show');
+        Route::get('/create', [PostController::class, 'createPostForm'])
+            ->name('createPost.show');
+        Route::post('/create', [PostController::class, 'createPost'])
+            ->name('createPost.perform');
+        Route::get('/edit/{post}', [PostController::class, 'editPostForm'])
+            ->name('editPost.show');
+        Route::post('/edit/{post}', [PostController::class, 'editPost'])
+            ->name('editPost.perform');
+        Route::delete('/delete/{id}', [PostController::class, 'deletePost'])
+            ->name('deletePost.perform');
+        Route::get('/export-posts', [PostController::class, 'exportPosts'])
+            ->name('export-posts');
+        Route::get('/detail/{postId}', [PostController::class, 'postDetail'])
+            ->name('postDetail.show');
     });
 });
