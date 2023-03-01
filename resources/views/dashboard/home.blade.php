@@ -6,20 +6,18 @@
             @foreach ($publicPost as $posts)
                 <div class="media d-block d-md-flex m-4">
                     @if ($posts->post_img == '')
-                        <img src="{{ url('/img/img_default_post.png') }}" width="100px" height="100px" alt="post_img">
+                        <img src="{{ url('/img/img_default_post.png') }}" class="post-img" alt="post_img">
                     @else
-                        <img src="/images/{{ $posts->post_img }}" width="100px" alt="post_img">
+                        <img src="/images/{{ $posts->post_img }}" class="post-img" alt="post-img">
                     @endif
                     <div class="media-body text-center text-md-left ml-md-3 ml-0">
                         <h5 class="mt-0 font-weight-bold">{{ $posts->title }}</h5>
-                        <p class="text-truncate" style="max-width: 150px;">{{ $posts->description }}</p>
-
+                        <p class="text-truncate post-des">{{ $posts->description }}</p>
                     </div>
                     <a class="text-decoration-none" href="{{ route('detailPost', $posts->id) }}">detail <i
                             class="fa-solid fa-circle-right"></i></a>
                 </div>
             @endforeach
-
         </div>
         <div class="d-flex justify-content-center">
             {{ $publicPost->links() }}

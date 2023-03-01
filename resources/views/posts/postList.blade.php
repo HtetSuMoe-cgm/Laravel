@@ -26,14 +26,14 @@
                             <tr>
                                 <td>
                                     @if ($posts->post_img == '')
-                                        <img src="{{ url('/img/img_default_post.png') }}" width="100px" height="100px"
+                                        <img src="{{ url('/img/img_default_post.png') }}" class="post-img"
                                             alt="post_img">
                                     @else
-                                        <img src="/images/{{ $posts->post_img }}" width="100px" alt="post_img">
+                                        <img src="/images/{{ $posts->post_img }}" class="post-img" alt="post_img">
                                     @endif
                                 </td>
                                 <td>{{ $posts->title }}</td>
-                                <td class="text-truncate" style="max-width: 150px;">{{ $posts->description }}</td>
+                                <td class="text-truncate post-des">{{ $posts->description }}</td>
                                 <td>{{ $posts->public_flag == 1 ? 'Private' : 'Public' }}</td>
                                 <td>
                                     <ul class="list-inline m-0">
