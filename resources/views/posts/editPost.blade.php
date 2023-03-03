@@ -9,13 +9,21 @@
                         {{ Form::model($post, ['method' => 'post', 'route' => ['editPost.perform', $post->id], 'files' => true]) }}
                         <div class="form-group row">
                             <div class="col-md-4 mx-auto">
-                                <img src="{{ asset('images/' . $post->post_img) }}" width="100" class="img-thumbnail" />
+                                <div id="divImageMediaPreview">
+                                
+                                @if ($post->post_img)
+                                    <img src="{{ asset('images/' . $post->post_img) }}" width="100"
+                                        class="img-thumbnail" />
+                                @else
+                                    <img src="{{ url('/img/img_default_post.png') }}" class="post-img" alt="post_img">
+                                @endif
+                            </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             {{ Form::label('post_img', 'Image', ['class' => 'col-md-4 col-form-label text-md-right']) }}
                             <div class="col-md-6">
-                                {{ Form::file('post_img', ['class' => 'form-control']) }}
+                                {{ Form::file('post_img', ['class' => 'form-control file-input']) }}
                             </div>
                             {{ Form::hidden('hidden_post_img', $post->post_img) }}
                         </div>
@@ -60,4 +68,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script type="text/javascript" src="{{ asset('js/createPost.js') }}"></script>
 @endsection
