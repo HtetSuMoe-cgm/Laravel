@@ -30,7 +30,7 @@
                         <div class="form-group row">
                             {{ Form::label('title', 'Title', ['class' => 'col-md-4 col-form-label text-md-right']) }}
                             <div class="col-md-6">
-                                {{ Form::text('title', $post->title, ['class' => 'form-control']) }}
+                                {{ Form::text('title', old('title',isset($post)?$post->title:''), ['class' => 'form-control']) }}
                                 @error('title')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -40,7 +40,7 @@
                         <div class="form-group row">
                             {{ Form::label('description', 'Description', ['class' => 'col-md-4 col-form-label text-md-right']) }}
                             <div class="col-md-6">
-                                {{ Form::textarea('description', $post->description, ['class' => 'form-control', 'rows' => 3]) }}
+                                {{ Form::textarea('description', old('description',isset($post)?$post->description:''), ['class' => 'form-control', 'rows' => 3]) }}
                                 @error('description')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror

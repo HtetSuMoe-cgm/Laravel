@@ -1,3 +1,7 @@
+body{
+  overflow-x:hidden;
+}
+
 .common-btn {
   display: flex;
   flex-direction: row;
