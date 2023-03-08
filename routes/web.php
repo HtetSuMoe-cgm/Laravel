@@ -75,7 +75,7 @@ Route::middleware(['isAuth'])->group(function () {
     });
 
     Route::group(['prefix' => 'post'], function () {
-        Route::get('/detailPost/{postId}', [PostController::class, 'detailPost'])
+        Route::get('/detailPost/{id}', [PostController::class, 'detailPost'])
             ->name('detailPost');
         Route::get('/postList', [PostController::class, 'postList'])
             ->name('postList.show');
@@ -83,15 +83,15 @@ Route::middleware(['isAuth'])->group(function () {
             ->name('createPost.show');
         Route::post('/create', [PostController::class, 'createPost'])
             ->name('createPost.perform');
-        Route::get('/edit/{post}', [PostController::class, 'editPostForm'])
+        Route::get('/edit/{id}', [PostController::class, 'editPostForm'])
             ->name('editPost.show');
-        Route::post('/edit/{post}', [PostController::class, 'editPost'])
+        Route::post('/edit/{id}', [PostController::class, 'editPost'])
             ->name('editPost.perform');
         Route::delete('/delete/{id}', [PostController::class, 'deletePost'])
             ->name('deletePost.perform');
         Route::get('/export-posts', [PostController::class, 'exportPosts'])
             ->name('exportPosts.perform');
-        Route::get('/detail/{postId}', [PostController::class, 'postDetail'])
+        Route::get('/detail/{id}', [PostController::class, 'postDetail'])
             ->name('postDetail.show');
     });
 });
