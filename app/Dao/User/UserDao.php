@@ -12,10 +12,9 @@ class UserDao implements UserDaoInterface
     /**
      * User Register
      */
-    public function registerUser($request)
+    public function registerUser($user)
     {
-        $data = $request->all();
-        $check = $this->create($data);
+        User::create($user);
     }
 
     /**
@@ -32,10 +31,9 @@ class UserDao implements UserDaoInterface
     /**
      * Create User By Admin
      */
-    public function createUser($request)
+    public function createUser($user)
     {
-        $data = $request->all();
-        $check = $this->create($data);
+        User::create($user);
     }
 
     /**
@@ -50,16 +48,9 @@ class UserDao implements UserDaoInterface
     /**
      * Edit User By Admin
      */
-    public function editUser($request, $id)
+    public function editUser($user, $id)
     {
-        $user = User::find($request->hidden_id);
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->type = $request->type;
-        $user->gender = $request->gender;
-        $user->updated_at = now();
-        $user->update();
-        return $user;
+        User::where('id', $id)->update($user);
     }
 
     /**
@@ -101,21 +92,6 @@ class UserDao implements UserDaoInterface
     }
 
     /**
-     * Create User
-     */
-    public function create(array $data)
-    {
-        return User::create([
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'gender' => $data['gender'],
-            'type' => $data['type'],
-            'created_at' => now(),
-        ]);
-    }
-
-    /**
      * Get user by user id
      */
     public function getUserId($id)
@@ -126,7 +102,7 @@ class UserDao implements UserDaoInterface
     /**
      * Update User Profile
      */
-    public function updateProfile($request, $id)
+    public function updateUserProfile($request, $id)
     {
         $user = User::find($request->hidden_id);
         $user->username = $request->username;

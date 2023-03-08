@@ -4,15 +4,15 @@ namespace App\Contracts\Dao;
 
 interface UserDaoInterface
 {
-    public function registerUser($request);
+    public function registerUser($user);
 
     public function getUserList();
 
-    public function createUser($request);
+    public function createUser($user);
 
     public function editUserForm($id);
 
-    public function editUser($request, $id);
+    public function editUser($user, $id);
 
     public function deleteUser($id);
 
@@ -24,7 +24,7 @@ interface UserDaoInterface
 
     public function getUserId($id);
 
-    public function updateProfile($data, $id);
+    public function updateUserProfile($data, $id);
 
     public function changePassword($request);
 }

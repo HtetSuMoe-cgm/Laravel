@@ -8,7 +8,6 @@ use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\PasswordResetRequest;
 use App\Http\Requests\User\RegisterRequest;
 use App\Http\Requests\User\SendPasswordResetMailRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;

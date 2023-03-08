@@ -65,7 +65,7 @@ Route::middleware(['isAuth'])->group(function () {
         Route::get('/profile/{id}', [UserController::class, 'userProfile'])
             ->name('userProfile.show')
             ->middleware('check.user');
-        Route::post('/profile/edit/{id}', [UserController::class, 'updateProfile'])
+        Route::post('/profile/edit/{id}', [UserController::class, 'updateUserProfile'])
             ->name('updateUserProfile.perform')
             ->middleware('check.user');
         Route::get('/password/change', [UserController::class, 'changePasswordForm'])

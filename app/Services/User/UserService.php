@@ -4,6 +4,7 @@ namespace App\Services\User;
 
 use App\Contracts\Dao\UserDaoInterface;
 use App\Contracts\Services\UserServiceInterface;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -21,7 +22,8 @@ class UserService implements UserServiceInterface
      */
     public function registerUser($request)
     {
-        $this->userDao->registerUser($request);
+        $user = $this->getUserData($request);
+        $this->userDao->registerUser($user);
     }
 
     /**
@@ -37,7 +39,23 @@ class UserService implements UserServiceInterface
      */
     public function createUser($request)
     {
-        $this->userDao->createUser($request);
+        $user = $this->getUserData($request);
+        $this->userDao->createUser($user);
+    }
+
+    /**
+     * Create User
+     */
+    public function getUserData($request)
+    {
+        return [
+            'username' => $request['username'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'gender' => $request['gender'],
+            'type' => $request['type'],
+            'created_at' => now(),
+        ];
     }
 
     /**
@@ -53,7 +71,23 @@ class UserService implements UserServiceInterface
      */
     public function editUser($request, $id)
     {
-        $this->userDao->editUser($request, $id);
+        $user = $this->updateUserData($request);
+        $this->userDao->editUser($user, $id);
+    }
+
+    /**
+     * Update User Data
+     */
+    public function updateUserData($request)
+    {
+        return [
+            'username' => $request['username'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'gender' => $request['gender'],
+            'type' => $request['type'],
+            'updated_at' => now(),
+        ];
     }
 
     /**
@@ -104,9 +138,9 @@ class UserService implements UserServiceInterface
     /**
      * Update User Profile
      */
-    public function updateProfile($request, $id)
+    public function updateUserProfile($request, $id)
     {
-        $this->userDao->updateProfile($request, $id);
+        $this->userDao->updateUserProfile($request, $id);
     }
 
     /**

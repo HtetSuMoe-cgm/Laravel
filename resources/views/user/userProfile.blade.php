@@ -39,7 +39,7 @@
                         <div class="form-group row">
                             {{ Form::label('type', 'User Type', ['class' => 'col-md-4 col-form-label text-md-right']) }}
                             <div class="col-md-6">
-                                {{ Form::label('type', $user->type, ['class' => 'col-form-label']) }}
+                                {{ Form::label('type',$user->type == 1 ? 'Admin' : 'User', ['class' => 'col-form-label']) }}
                             </div>
                         </div>
 

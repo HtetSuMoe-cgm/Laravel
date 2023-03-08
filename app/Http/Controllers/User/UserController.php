@@ -106,9 +106,9 @@ class UserController extends Controller
     /**
      * Update User Profile
      */
-    public function updateProfile(Request $request, $id)
+    public function updateUserProfile(Request $request, $id)
     {
-        $this->userService->updateProfile($request, $id);
+        $this->userService->updateUserProfile($request, $id);
         return redirect()->back()->with(['update_success' => __('messages.profile.update_success')]);
     }
 

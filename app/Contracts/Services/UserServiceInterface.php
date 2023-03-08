@@ -23,7 +23,7 @@ interface UserServiceInterface
 
     public function getUserId($id);
 
-    public function updateProfile($request, $id);
+    public function updateUserProfile($request, $id);
 
     public function changePassword($request);
 }

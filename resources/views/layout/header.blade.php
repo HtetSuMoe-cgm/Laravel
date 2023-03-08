@@ -24,7 +24,7 @@
                     @endif
                 @endauth
             </ul>
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto pr-5">
                 @if (Auth::check())
                     <li class="nav-item">
                         <div class="dropdown">
