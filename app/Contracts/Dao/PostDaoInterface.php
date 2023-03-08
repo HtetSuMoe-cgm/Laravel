@@ -12,7 +12,7 @@ interface PostDaoInterface
 
     public function detailPost($postId);
 
-    public function dbAddPost($input);
+    public function createPost($input);
 
     public function editPostForm($id);
 

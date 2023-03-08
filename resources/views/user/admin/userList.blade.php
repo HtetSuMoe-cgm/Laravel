@@ -9,7 +9,7 @@
                 <div class="col col-md-6">
                     <div class="row">
                         <div class="col col-md-6">
-                            {{ Form::open(['method' => 'post', 'route' => 'import-users', 'files' => true]) }}
+                            {{ Form::open(['method' => 'post', 'route' => 'importUsers.perform', 'files' => true]) }}
                             {{ Form::label('file', 'Choose file', ['class' => 'custom-file-label', 'id' => 'customFile']) }}
                             <div class="custom-file text-left">
                                 {{ Form::file('file', ['class' => 'custom-file-input', 'for' => 'customFile']) }}
@@ -83,7 +83,7 @@
                         </tr>
                     @endif
             </table>
-            <a class="btn btn-success mt-3" href="{{ route('export-users') }}">Export Users</a>
+            <a class="btn btn-success mt-3" href="{{ route('exportUsers.perform') }}">Export Users</a>
         </div>
     </div>
 @endsection

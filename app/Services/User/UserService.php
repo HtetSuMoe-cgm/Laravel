@@ -19,9 +19,9 @@ class UserService implements UserServiceInterface
     /**
      * User Register
      */
-    public function register($request)
+    public function registerUser($request)
     {
-        $this->userDao->register($request);
+        $this->userDao->registerUser($request);
     }
 
     /**
@@ -35,9 +35,9 @@ class UserService implements UserServiceInterface
     /**
      * Create User by Admin
      */
-    public function doAddUser($request)
+    public function createUser($request)
     {
-        $this->userDao->dbAddUser($request);
+        $this->userDao->createUser($request);
     }
 
     /**

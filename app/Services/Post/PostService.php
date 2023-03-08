@@ -54,7 +54,7 @@ class PostService implements PostServiceInterface
     /**
      * Add Post
      */
-    public function doAddPost($request)
+    public function createPost($request)
     {
         if ($request->hasFile('post_img')) {
             $image = $this->getImage($request);
@@ -62,7 +62,7 @@ class PostService implements PostServiceInterface
             $image = "";
         }
         $data = $this->getPostData($request, $image);
-        $this->postDao->dbAddPost($data);
+        $this->postDao->createPost($data);
     }
 
     /**

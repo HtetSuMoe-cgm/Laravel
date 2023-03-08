@@ -21,15 +21,7 @@ class UserController extends Controller
     {
         $this->userService = $userServiceInterface;
     }
-
-    /**
-     *
-     */
-    public function Welcome()
-    {
-        return view('dashboard.welcome');
-    }
-
+    
     /**
      * User List
      */
@@ -53,7 +45,7 @@ class UserController extends Controller
     public function createUser(CreateUserRequest $request)
     {
         $request->validated();
-        $this->userService->doAddUser($request);
+        $this->userService->createUser($request);
         return redirect()->route('userList.show');
     }
 
@@ -83,14 +75,6 @@ class UserController extends Controller
     {
         $this->userService->deleteUser($id);
         return redirect()->route('userList.show');
-    }
-
-    /**
-     * Import Exel View
-     */
-    public function importView(Request $request)
-    {
-        return view('importFile');
     }
 
     /**

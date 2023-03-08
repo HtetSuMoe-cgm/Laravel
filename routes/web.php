@@ -26,7 +26,7 @@ Route::group(['prefix' => 'user'], function () {
         ->name('login.perform');
     Route::get('/register', [AuthController::class, 'viewRegister'])
         ->name('register.show');
-    Route::post('/register', [AuthController::class, 'register'])
+    Route::post('/register', [AuthController::class, 'registerUser'])
         ->name('register.perform');
     Route::get('/forget-password', [AuthController::class, 'showPasswordResetMailForm'])
         ->name('user.forgotPassword.show');
@@ -39,9 +39,7 @@ Route::group(['prefix' => 'user'], function () {
 });
 
 //Route Admin
-Route::middleware(['auth', 'user-role:1'])->group(function () {
-    Route::get('welcome', [UserController::class, 'Welcome'])
-        ->name('welcome');
+Route::middleware(['auth', 'user.role:1'])->group(function () {
     Route::get('/admin/user/list', [UserController::class, 'userList'])
         ->name('userList.show');
     Route::get('/admin/user/create', [UserController::class, 'createUserForm'])
@@ -54,12 +52,10 @@ Route::middleware(['auth', 'user-role:1'])->group(function () {
         ->name('editUser.perform');
     Route::delete('/admin/user/delete/{id}', [UserController::class, 'deleteUser'])
         ->name('deleteUser.perform');
-    Route::get('/admin/user/file-import', [UserController::class, 'importView'])
-        ->name('import-view');
     Route::post('/admin/user/import-users', [UserController::class, 'importUsers'])
-        ->name('import-users');
+        ->name('importUsers.perform');
     Route::get('/admin/user/export-users', [UserController::class, 'exportUsers'])
-        ->name('export-users');
+        ->name('exportUsers.perform');
 });
 
 Route::middleware(['isAuth'])->group(function () {
@@ -68,10 +64,10 @@ Route::middleware(['isAuth'])->group(function () {
             ->name('logout.perform');
         Route::get('/profile/{id}', [UserController::class, 'userProfile'])
             ->name('userProfile.show')
-            ->middleware('check-user');
+            ->middleware('check.user');
         Route::post('/profile/edit/{id}', [UserController::class, 'updateProfile'])
             ->name('updateUserProfile.perform')
-            ->middleware('check-user');
+            ->middleware('check.user');
         Route::get('/password/change', [UserController::class, 'changePasswordForm'])
             ->name('changePassword.show');
         Route::post('/password/change', [UserController::class, 'changePassword'])
@@ -94,7 +90,7 @@ Route::middleware(['isAuth'])->group(function () {
         Route::delete('/delete/{id}', [PostController::class, 'deletePost'])
             ->name('deletePost.perform');
         Route::get('/export-posts', [PostController::class, 'exportPosts'])
-            ->name('export-posts');
+            ->name('exportPosts.perform');
         Route::get('/detail/{postId}', [PostController::class, 'postDetail'])
             ->name('postDetail.show');
     });

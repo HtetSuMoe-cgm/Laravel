@@ -11,7 +11,7 @@ interface PostServiceInterface
 
     public function detailPost($postId);
 
-    public function doAddPost($request);
+    public function createPost($request);
 
     public function editPostForm($id);
 

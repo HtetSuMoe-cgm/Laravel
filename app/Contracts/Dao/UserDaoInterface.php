@@ -4,11 +4,11 @@ namespace App\Contracts\Dao;
 
 interface UserDaoInterface
 {
-    public function register($request);
+    public function registerUser($request);
 
     public function getUserList();
 
-    public function dbAddUser($request);
+    public function createUser($request);
 
     public function editUserForm($id);
 

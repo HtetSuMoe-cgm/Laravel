@@ -54,7 +54,7 @@ class PostDao implements PostDaoInterface
     /**
      * Add Post
      */
-    public function dbAddPost($input)
+    public function createPost($input)
     {
         Post::create($input);
     }

@@ -3,11 +3,11 @@ namespace App\Contracts\Services;
 
 interface UserServiceInterface
 {
-    public function register($request);
+    public function registerUser($request);
 
     public function getUserList();
 
-    public function doAddUser($request);
+    public function createUser($request);
 
     public function editUserForm($id);
 

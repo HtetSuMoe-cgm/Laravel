@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserRoleMiddleware
 {
@@ -17,8 +17,7 @@ class UserRoleMiddleware
      */
     public function handle(Request $request, Closure $next, $userType)
     {
-        if(Auth::check() && Auth::user()->type == $userType)
-        {
+        if (Auth::check() && Auth::user()->type == $userType) {
             return $next($request);
         }
         return response()->json(['You do not have permission to access for this page.']);

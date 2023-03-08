@@ -12,7 +12,7 @@ class UserDao implements UserDaoInterface
     /**
      * User Register
      */
-    public function register($request)
+    public function registerUser($request)
     {
         $data = $request->all();
         $check = $this->create($data);
@@ -32,7 +32,7 @@ class UserDao implements UserDaoInterface
     /**
      * Create User By Admin
      */
-    public function dbAddUser($request)
+    public function createUser($request)
     {
         $data = $request->all();
         $check = $this->create($data);

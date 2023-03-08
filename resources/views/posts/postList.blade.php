@@ -68,7 +68,7 @@
                         </tr>
                     @endif
             </table>
-            <a class="btn btn-success mt-3" href="{{ route('export-posts') }}">Export Posts</a>
+            <a class="btn btn-success mt-3" href="{{ route('exportPosts.perform') }}">Export Posts</a>
         </div>
     </div>
 @endsection

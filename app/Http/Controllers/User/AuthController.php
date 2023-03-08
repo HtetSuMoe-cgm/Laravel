@@ -55,10 +55,10 @@ class AuthController extends Controller
     /**
      * User Register
      */
-    public function register(RegisterRequest $request)
+    public function registerUser(RegisterRequest $request)
     {
         $request->validated();
-        $this->userService->register($request);
+        $this->userService->registerUser($request);
         return view('user.login');
     }
 

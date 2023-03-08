@@ -66,7 +66,7 @@ class PostController extends Controller
     public function createPost(CreatePostRequest $request)
     {
         $request->validated();
-        $this->postService->doAddPost($request);
+        $this->postService->createPost($request);
         return redirect()->route('postList.show');
     }
 
