@@ -16,15 +16,15 @@ interface UserDaoInterface
 
     public function deleteUser($id);
 
-    public function forgotPassword($request, $token);
+    public function forgotPassword($data);
 
-    public function getResetData($request);
+    public function getResetData($email, $token);
 
-    public function resetPassword($request);
+    public function resetPassword($resetPwsd, $email);
 
     public function getUserId($id);
 
     public function updateUserProfile($data, $id);
 
-    public function changePassword($request);
+    public function changePassword($changePwsd);
 }

@@ -43,12 +43,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                {{ Form::submit('Update Password', ['class' => 'btn btn-outline-primary']) }}
-                            </div>
-                            <div class="col-md-2">
-                                <a href="{{ route('userList.show') }}" class="btn btn-outline-primary">Back</a>
+                        <div class="form-group row">
+                            <div class="col-md-12 common-btn">
+                                {{ Form::submit('Update Password', ['class' => 'btn btn-outline-primary mr-2']) }}
+                                <a href="{{ route('home') }}" class="btn btn-outline-primary">Back</a>
                             </div>
                         </div>
                         {{ Form::close() }}

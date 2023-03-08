@@ -5,7 +5,6 @@ namespace App\Dao\User;
 use App\Contracts\Dao\UserDaoInterface;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class UserDao implements UserDaoInterface
 {
@@ -64,31 +63,27 @@ class UserDao implements UserDaoInterface
     /**
      * Forgot password
      */
-    public function forgotPassword($request, $token)
+    public function forgotPassword($data)
     {
-        DB::table('password_resets')->insert(
-            ['email' => $request->email, 'token' => $token, 'created_at' => now()]
-        );
+        DB::table('password_resets')->insert($data);
     }
 
     /**
      * Get reset data
      */
-    public function getResetData($request)
+    public function getResetData($email, $token)
     {
         return DB::table('password_resets')
-            ->where(['email' => $request->email, 'token' => $request->token])->first();
+            ->where(['email' => $email, 'token' => $token])->first();
     }
 
     /**
      * Reset Password
      */
-    public function resetPassword($request)
+    public function resetPassword($resetPwsd, $email)
     {
-        $user = User::where('email', $request->email)
-            ->update(['password' => Hash::make($request->password)]);
-
-        DB::table('password_resets')->where(['email' => $request->email])->delete();
+        User::where('email', $email)->update($resetPwsd);
+        DB::table('password_resets')->where('email', $email)->delete();
     }
 
     /**
@@ -102,22 +97,16 @@ class UserDao implements UserDaoInterface
     /**
      * Update User Profile
      */
-    public function updateUserProfile($request, $id)
+    public function updateUserProfile($data, $id)
     {
-        $user = User::find($request->hidden_id);
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->gender = $request->gender;
-        $user->updated_at = now();
-        $user->update();
-        return $user;
+        User::where('id', $id)->update($data);
     }
 
     /**
      * Change Password
      */
-    public function changePassword($request)
+    public function changePassword($changePwsd)
     {
-        User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
+        User::find(auth()->user()->id)->update(['password' => $changePwsd]);
     }
 }

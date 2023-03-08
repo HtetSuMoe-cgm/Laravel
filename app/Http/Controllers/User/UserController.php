@@ -21,7 +21,7 @@ class UserController extends Controller
     {
         $this->userService = $userServiceInterface;
     }
-    
+
     /**
      * User List
      */

@@ -104,7 +104,8 @@ class UserService implements UserServiceInterface
     public function forgotPassword($request)
     {
         $token = Str::random(60);
-        $this->userDao->forgotPassword($request, $token);
+        $data = $this->getForgotData($request, $token);
+        $this->userDao->forgotPassword($data);
         Mail::send('email.verify', ['token' => $token], function ($message) use ($request) {
             $message->to($request->email);
             $message->subject('Your Password Reset Link');
@@ -112,11 +113,25 @@ class UserService implements UserServiceInterface
     }
 
     /**
+     * Get Forgot Data
+     */
+    public function getForgotData($request, $token)
+    {
+        return [
+            'email' => $request->email,
+            'token' => $token,
+            'created_at' => now(),
+        ];
+    }
+
+    /**
      * Get Reset Data
      */
     public function getResetData($request)
     {
-        return $this->userDao->getResetData($request);
+        $email = $request->email;
+        $token = $request->token;
+        return $this->userDao->getResetData($email, $token);
     }
 
     /**
@@ -124,7 +139,19 @@ class UserService implements UserServiceInterface
      */
     public function resetPassword($request)
     {
-        $this->userDao->resetPassword($request);
+        $email = $request->email;
+        $resetPwsd = $this->getResetPassword($request);
+        $this->userDao->resetPassword($resetPwsd, $email);
+    }
+
+    /**
+     * Get Reset Password
+     */
+    public function getResetPassword($request)
+    {
+        return [
+            'password' => Hash::make($request['password']),
+        ];
     }
 
     /**
@@ -140,7 +167,21 @@ class UserService implements UserServiceInterface
      */
     public function updateUserProfile($request, $id)
     {
-        $this->userDao->updateUserProfile($request, $id);
+        $data = $this->getUserProfileData($request);
+        $this->userDao->updateUserProfile($data, $id);
+    }
+
+    /**
+     * Get User Profile Data
+     */
+    public function getUserProfileData($request)
+    {
+        return [
+            'username' => $request['username'],
+            'email' => $request['email'],
+            'gender' => $request['gender'],
+            'updated_at' => now(),
+        ];
     }
 
     /**
@@ -148,6 +189,7 @@ class UserService implements UserServiceInterface
      */
     public function changePassword($request)
     {
-        $this->userDao->changePassword($request);
+        $changePwsd = Hash::make($request->new_password);
+        $this->userDao->changePassword($changePwsd);
     }
 }

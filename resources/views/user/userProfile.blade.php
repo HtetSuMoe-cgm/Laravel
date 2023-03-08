@@ -55,7 +55,7 @@
                             <div class="col-md-12 common-btn">
                                 {{ Form::hidden('hidden_id', $user->id) }}
                                 {{ Form::submit('Update User Profile', ['class' => 'btn btn-outline-primary mr-2']) }}
-                                <a href="{{ route('userList.show') }}" class="btn btn-outline-primary">Back</a>
+                                <a href="{{ route('home') }}" class="btn btn-outline-primary">Back</a>
                             </div>
                         </div>
                         {{ Form::close() }}
